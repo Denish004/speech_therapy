@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Card from '../components/PCardSW.jsx';  // Ensure this is used or remove if not needed
-import Calendar from '../components/ProfileSW.jsx';
+// import Card from '../components/PCardSW.jsx';  // Ensure this is used or remove if not needed
+import Calendar from '../components/Calendar.jsx'
+import Profile from '../components/ProfileSW.jsx'
 import Cards from '../components/CardsSW.jsx';
 import Loader from '../components/LoaderSW.jsx';  // Import the Loader component
 
@@ -21,16 +22,19 @@ const App = () => {
         <Loader />  // Show loader while loading
       ) : (
         <>
-          <div className='w-4/5 flex flex-col bg-[rgb(249,248,240)]'>
+          <div className='w-3/4 flex flex-col bg-[rgb(249,248,240)]'>
             <Cards />
             <Cards />
             <Cards />
           </div>
-          <div className='w-1/5'>
+          <div className='w-1/4'>
             <div className='flex flex-col justify-between'>
               <div style={{ marginTop: "-76px" }}>
-                <Calendar />
+                <Profile />
               </div>
+              {/* <div>
+                <Calendar/>
+              </div> */}
             </div>
           </div>
         </>

@@ -1,0 +1,7 @@
+/* styles/glassEffect.css */
+.glass-effect {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.3); /* Adjust the opacity to control the transparency */
+    border-radius: 0.5rem; /* Rounded corners */
+  }
+  
