@@ -1,11 +1,19 @@
-import React from 'react'
-import Therapist from './pages/TherapistSW'
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import TherapistSW from './pages/TherapistSW';
+import Home from './pages/LandingPageAB'
 const App = () => {
   return (
-    <div>
-      <Therapist/>
-    </div>
-  )
-}
+    <Router>
+      <div>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/therapist" element={<TherapistSW />} /> {/* Route for TherapistSW component */}
+          {/* Add other routes here as needed */}
+        </Routes>
+      </div>
+    </Router>
+  );
+};
 
 export default App

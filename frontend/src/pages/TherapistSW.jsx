@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 // import Card from '../components/PCardSW.jsx';  // Ensure this is used or remove if not needed
-import Calendar from '../components/Calendar.jsx'
+import Calendar from '../components/CalendarSW.jsx'
 import Profile from '../components/ProfileSW.jsx'
 import Cards from '../components/CardsSW.jsx';
 import Loader from '../components/LoaderSW.jsx';  // Import the Loader component
