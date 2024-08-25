@@ -1,11 +1,11 @@
-import LandingPage from "./pages/LandingPage";
-
-function App() {
+import React from 'react'
+import Therapist from './pages/TherapistSW'
+const App = () => {
   return (
     <div>
-      <LandingPage />
+      <Therapist/>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
