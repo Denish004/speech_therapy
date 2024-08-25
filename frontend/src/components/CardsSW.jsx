@@ -1,5 +1,5 @@
 import React from 'react'
-import Card from './PCard'
+import Card from './PCardSW'
 
 const Cards = () => {
   return (
