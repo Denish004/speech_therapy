@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Card = () => {
   return (
-  <div className="mx-auto">
+  <div className="mx-10">
 
     <StyledWrapper>
       <div className="parent">
