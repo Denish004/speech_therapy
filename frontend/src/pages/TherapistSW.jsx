@@ -16,17 +16,17 @@ const App = () => {
   }, []);
 
   return (
-    <div className='flex h-max bg-blue-500'>
+    <div className='flex h-max bg-[rgb(249,248,240)]'>
       {loading ? (
         <Loader />  // Show loader while loading
       ) : (
         <>
-          <div className='w-5/6 flex flex-col bg-blue-500'>
+          <div className='w-4/5 flex flex-col bg-[rgb(249,248,240)]'>
             <Cards />
             <Cards />
             <Cards />
           </div>
-          <div className='w-1/6'>
+          <div className='w-1/5'>
             <div className='flex flex-col justify-between'>
               <div style={{ marginTop: "-76px" }}>
                 <Calendar />

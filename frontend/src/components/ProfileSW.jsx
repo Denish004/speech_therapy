@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const Card = () => {
   return (
+    <div className="mx-auto">
     <StyledWrapper>
       <div className="e-card playing">
         <div className="wave" />
@@ -37,6 +38,8 @@ const Card = () => {
         </div>
       </div>
     </StyledWrapper>
+      
+    </div>
   );
 };
 
