@@ -4,6 +4,7 @@ import Calendar from '../components/CalendarSW.jsx'
 import Profile from '../components/ProfileSW.jsx'
 import Cards from '../components/CardsSW.jsx';
 import Loader from '../components/LoaderSW.jsx';  // Import the Loader component
+import TodoList from '../components/TodoSW.jsx';
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -11,7 +12,7 @@ const App = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 3000); // 5 seconds
+    }, 1000); // 5 seconds
 
     return () => clearTimeout(timer); // Cleanup timer on unmount
   }, []);
@@ -29,8 +30,11 @@ const App = () => {
           </div>
           <div className='w-1/4'>
             <div className='flex flex-col justify-between'>
-              <div style={{ marginTop: "-76px" }}>
+              <div style={{ marginTop: "+22px" ,marginLeft:'+40px'}}>
                 <Profile />
+              </div>
+              <div style={{marginLeft:'55px',marginTop:'50px'}}>
+                <TodoList/>
               </div>
               {/* <div>
                 <Calendar/>
