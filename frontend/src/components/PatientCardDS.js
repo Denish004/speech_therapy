@@ -45,45 +45,48 @@
 
 import React from "react";
 import styled from "styled-components";
+import PatientCardLottie from "../lotties/PatientCardLottieDS";
+import paitentAvatarDS from "../assets/patientAvatarDS.png"
+import GaugeChartDS from "./ChartsDS/GaugeChartDS";
 
-const Card = () => {
+const PatientCardDS = () => {
   return (
-    <StyledWrapper>
-      <div className="card">
+    <div >
+      <div className="absolute -z-[5] w-full ">
+    <PatientCardLottie/>
+    </div>
+   <div className="flex justify-center py-10 " >
+    <StyledWrapper className="w-3/4  ">
+      <div className="card ">
         <div className="card-info">
-        <div className='flex'>
+        <div className='flex justify-evenly'>
 
-     <div class="relative w-40 h-40 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600 m-9">
-     <svg class="absolute w-40 h-40 text-gray-400 -left" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-         <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
-     </svg>
- </div>
+            <div class="relative w-40 h-40 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600 m-9">
+            <img src={paitentAvatarDS} alt="Logo" ></img>;
+            </div>
 
 
 
- <div>
-
-
-     <a href="#">
-         <img class="rounded-t-lg" src="/docs/images/blog/image-1.jpg" alt="" />
-     </a>
-     <div class="p-5">
-        <a href="#">
-             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Welcome Patient Name</h5>
-         </a>
-         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
-         <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-             Read more
-              <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-             </svg>
-         </a>
+            <div>
+            <div class="p-5">
+                
+                    <h5 class="mb-2 ml-9 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Welcome client Name</h5>
+              
+                <GaugeChartDS/>
+                <a href="#" class="inline-flex items-center px-3 py-2 mb-5 ml-20 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                     More Details
+                      <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                    </svg>
+                </a>
+            </div>
+            </div>
      </div>
      </div>
      </div>
-        </div>
-      </div>
     </StyledWrapper>
+    </div>
+    </div>
   );
 };
 
@@ -127,9 +130,8 @@ const StyledWrapper = styled.div`
   --color: white;
   background: var(--color);
   color: var(--color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+ 
+
   width: 100%;
   height: 100%;
   overflow: visible;
@@ -155,4 +157,4 @@ const StyledWrapper = styled.div`
 
 `;
 
-export default Card;
+export default PatientCardDS;
