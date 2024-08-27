@@ -5,6 +5,7 @@ import Cards from '../components/CardsSW.jsx';
 import Loader from '../components/LoaderSW.jsx';
 import TodoList from '../components/TodoSW.jsx';
 import Navbar from '../components/NavbarAB.jsx'
+import NotificationsSW from '../components/NotificationsSW.jsx';
 const App = () => {
   const [loading, setLoading] = useState(true);
 
@@ -35,13 +36,24 @@ const App = () => {
               <div className='mt-5 lg:mt-6 ml-0 lg:ml-10'>
                 <Profile />
               </div>
-              <div className='mt-5 lg:mt-12 ml-0 lg:ml-12 w-full'>
-                <TodoList />
+              <div className='mt-10 lg:mt-12 ml-0 lg:ml-12 w-full' style={{marginTop:'58px'}}>
+                <div className='mb-5'>
+                <NotificationsSW/>
+                </div>
+                <div className='mb-5'>
+                <NotificationsSW/>
+                </div>
+                <div className='mb-5'>
+                <NotificationsSW/>
+                </div>
+               
               </div>
               {/* Uncomment to add Calendar */}
-              {/* <div className='mt-5 w-full'>
+              <div className='mt-5 w-full' style={{marginLeft:'21px'}}>
+               
                 <Calendar />
-              </div> */}
+              
+              </div>
             </div>
           </div>
         </>
