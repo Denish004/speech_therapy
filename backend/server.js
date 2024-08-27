@@ -1,7 +1,7 @@
 require('dotenv').config()
 const express = require('express');
 const mongoose = require('mongoose');
-const patientRoutes = require('./routes/patientRoutes');
+const patientRoutes = require('./routes/patientRoutesDS');
 const cors= require('cors')
 const app = express();
 
@@ -13,6 +13,9 @@ app.use((req, res, next) => {
     console.log(req.path, req.method)
     next()
   })
+app.use('/',(req,res)=>{
+    res.send("You are SuccesFully Connected");
+})
 
 app.use('/api/patients', patientRoutes);
 
