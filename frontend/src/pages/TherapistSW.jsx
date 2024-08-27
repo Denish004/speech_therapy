@@ -4,7 +4,7 @@ import Profile from '../components/ProfileSW.jsx';
 import Cards from '../components/CardsSW.jsx';
 import Loader from '../components/LoaderSW.jsx';
 import TodoList from '../components/TodoSW.jsx';
-
+import Navbar from '../components/NavbarAB.jsx'
 const App = () => {
   const [loading, setLoading] = useState(true);
 
@@ -17,6 +17,8 @@ const App = () => {
   }, []);
 
   return (
+    <>
+     {!loading && <Navbar/>}
     <div className='flex flex-col lg:flex-row h-full min-h-screen bg-[rgb(249,248,240)]'>
       {loading ? (
         <Loader /> 
@@ -45,6 +47,7 @@ const App = () => {
         </>
       )}
     </div>
+    </>
   );
 };
 
