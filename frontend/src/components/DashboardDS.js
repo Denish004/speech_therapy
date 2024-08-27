@@ -52,16 +52,18 @@ import Appointments from './AppointmentsDS';
 // import { ComplexNavbar } from '@material-tailwind/react';
 import  ComplexNavbar  from './ComplexNavbarDS';
 import  PatientCard from './PatientCardDS';
+import Navbar from './NavbarAB';
 
 const Dashboard = () => {
     return (
         <div className="container">
-            <ComplexNavbar/>
+            {/* <ComplexNavbar/> */}
+              <Navbar/>
 
 
 
 
-          <PatientCard/>
+              <PatientCard/>
           
 
   

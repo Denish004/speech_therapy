@@ -6,7 +6,7 @@ const Card = () => {
     <div className="mx-10">
       <StyledWrapper>
         <div className="parent">
-          <div className="card">
+          <div className="card " >
             <div className="logo">
               <span className="circle circle1" />
               <span className="circle circle2" />
@@ -54,7 +54,7 @@ const StyledWrapper = styled.div`
   .card {
     height: 100%;
     border-radius: 50px;
-    background: linear-gradient(135deg, #d0a7f5 0%, #c1a2f1 100%); /* Light purple gradient */
+    background: linear-gradient(135deg, #d0a7f5 0%, #7E3AF2 100%); /* Light purple gradient */
     transition: all 0.5s ease-in-out;
     transform-style: preserve-3d;
     box-shadow: rgba(0, 0, 0, 0.1) 40px 50px 25px -40px, rgba(0, 0, 0, 0.2) 0px 25px 25px -5px;
