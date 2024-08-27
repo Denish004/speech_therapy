@@ -13,6 +13,9 @@ app.use((req, res, next) => {
     console.log(req.path, req.method)
     next()
   })
+app.use('/',(req,res)=>{
+    res.send("You are SuccesFully Connected");
+})
 
 app.use('/api/patients', patientRoutes);
 
