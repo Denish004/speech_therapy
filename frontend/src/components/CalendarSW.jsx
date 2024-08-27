@@ -1,79 +1,279 @@
-import React from 'react';
-import '../styles/glassEffect.css'; // Import the custom CSS for the glass effect
+import React, { useMemo, useState } from "react";
+import {
+  addMonths,
+  eachDayOfInterval,
+  endOfMonth,
+  endOfWeek,
+  format,
+  isSameDay,
+  isSameMonth,
+  isSameYear,
+  parse,
+  startOfMonth,
+  startOfToday,
+  startOfWeek,
+} from "date-fns";
+import { AnimatePresence, motion } from "framer-motion";
+import useMeasure from "react-use-measure";
+import { clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
 
-const daysOfWeek = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
-const daysInMonth = 31; // Number of days in the month
+function cn(...inputs) {
+  return twMerge(clsx(inputs));
+}
 
-const generateCalendarDays = (daysInMonth) => {
-  const days = [];
-  for (let i = 1; i <= daysInMonth; i++) {
-    days.push(i);
+function usePrevious(value) {
+  const [tuple, setTuple] = useState([null, value]);
+
+  if (tuple[1] !== value) {
+    setTuple([tuple[1], value]);
   }
-  return days;
+
+  return tuple[0] || value;
+}
+
+// Sample appointments data
+const appointments = {
+  "2024-08-25": ["Appointment with Dr. Smith", "Follow-up with Dr. Jones"],
+ 
+  "2024-09-01": ["Consultation with Dr. White"],
 };
 
-const Calendar = () => {
-  const calendarDays = generateCalendarDays(daysInMonth);
+export function Calendar() {
+  const [ref, bounds] = useMeasure();
+  const today = startOfToday();
+  const [currentMonth, setCurrentMonth] = useState(format(today, "MMyyyy"));
+  const prevMonth = usePrevious(currentMonth);
+  const [selectedDate, setSelectedDate] = useState(null);
+
+  const direction = prevMonth < currentMonth ? 1 : -1;
+
+  const firstDayOfMonth = startOfMonth(
+    parse(currentMonth, "MMyyyy", new Date())
+  );
+
+  const days = useMemo(() => {
+    return eachDayOfInterval({
+      start: startOfWeek(firstDayOfMonth),
+      end: endOfWeek(endOfMonth(firstDayOfMonth)),
+    });
+  }, [firstDayOfMonth]);
+
+  const showToday = useMemo(() => {
+    return (
+      !isSameMonth(today, parse(currentMonth, "MMyyyy", new Date())) ||
+      !isSameYear(today, parse(currentMonth, "MMyyyy", new Date()))
+    );
+  }, [today, currentMonth]);
+
+  const variants = {
+    enter: ({ direction, width }) => {
+      return {
+        x: direction * width,
+        opacity: 0,
+      };
+    },
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1,
+    },
+    exit: ({ direction, width }) => {
+      return {
+        zIndex: 0,
+        x: direction * -width,
+        opacity: 0,
+      };
+    },
+  };
+
+  const dayPlacements = [
+    "",
+    "col-start-2",
+    "col-start-3",
+    "col-start-4",
+    "col-start-5",
+    "col-start-6",
+    "col-start-7",
+  ];
+
+  const handleDateClick = (day) => {
+    const formattedDate = format(day, "yyyy-MM-dd");
+    setSelectedDate(appointments[formattedDate] ? formattedDate : null);
+  };
 
   return (
-    <div className="flex flex-col items-center py-8 px-4">
-      <div className="w-full max-w-md mx-auto glass-effect shadow-lg">
-        <div className="p-5">
-          <div className="flex items-center justify-between mb-4">
-            <h1 className="text-xl font-bold text-gray-900 dark:text-gray-100">October 2020</h1>
-            <div className="flex items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-gray-900 dark:text-gray-100" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M15 19l-7-7 7-7" />
-              </svg>
-              <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 ml-3 text-gray-900 dark:text-gray-100" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M9 5l7 7-7 7" />
-              </svg>
-            </div>
-          </div>
-          <div className="overflow-x-auto">
-            <table className="w-full table-auto text-gray-900 dark:text-gray-100">
-              <thead>
-                <tr>
-                  {daysOfWeek.map((day, index) => (
-                    <th key={index} className="p-2 text-center">
-                      <p className="text-lg font-medium">{day}</p>
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {Array.from({ length: Math.ceil(daysInMonth / 7) }).map((_, rowIndex) => (
-                  <tr key={rowIndex}>
-                    {daysOfWeek.map((_, dayIndex) => {
-                      const dayNumber = rowIndex * 7 + dayIndex + 1;
-                      return (
-                        <td key={dayIndex} className="p-2">
-                          <div className={`flex items-center justify-center w-full h-12 cursor-pointer ${dayNumber <= daysInMonth ? 'text-gray-900 dark:text-gray-100' : 'text-transparent'}`}>
-                            {dayNumber <= daysInMonth ? (
-                              <p className="text-xl font-medium">{dayNumber}</p>
-                            ) : (
-                              <p>&nbsp;</p>
-                            )}
-                          </div>
-                        </td>
-                      );
-                    })}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div className="p-5 border-t border-gray-200">
-          <div className="flex justify-center mt-4">
-            <button className="bg-indigo-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-              Add Event
-            </button>
-          </div>
+    <div className="w-[300px] p-2 border rounded-lg shadow-lg">
+      <div className="flex items-center px-2 mb-1 overflow-hidden">
+        <h1 className="font-bold text-lg flex-1">
+          {format(parse(currentMonth, "MMyyyy", new Date()), "MMMM yyyy")}
+        </h1>
+        <AnimatePresence>
+          {showToday && (
+            <motion.button
+              initial={{ y: -30 }}
+              animate={{
+                y: 0,
+              }}
+              exit={{ y: -30 }}
+              className="px-2 text-sm border rounded-md mr-2 text-gray-600 hover:bg-gray-100"
+              onClick={() => {
+                setCurrentMonth(format(today, "MMyyyy"));
+              }}
+            >
+              Today
+            </motion.button>
+          )}
+        </AnimatePresence>
+        <div className="flex justify-between">
+          <button
+            className="text-gray-500"
+            onClick={() => {
+              setCurrentMonth(
+                format(
+                  addMonths(parse(currentMonth, "MMyyyy", new Date()), -1),
+                  "MMyyyy"
+                )
+              );
+            }}
+          >
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M15 19l-7-7 7-7"
+              ></path>
+            </svg>
+          </button>
+          <button
+            className="text-gray-500 ml-2"
+            onClick={() => {
+              setCurrentMonth(
+                format(
+                  addMonths(parse(currentMonth, "MMyyyy", new Date()), 1),
+                  "MMyyyy"
+                )
+              );
+            }}
+          >
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M9 5l7 7-7 7"
+              ></path>
+            </svg>
+          </button>
         </div>
       </div>
+      <motion.div
+        className="relative overflow-hidden"
+        initial={false}
+        animate={{
+          height: bounds.height + 40,
+        }}
+        style={{
+          height: bounds.height + 40,
+        }}
+      >
+        <div className="grid grid-cols-7 place-content-center">
+          {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
+            <div key={day} className="p-2">
+              <span className="text-gray-500">{day}</span>
+            </div>
+          ))}
+        </div>
+        <AnimatePresence
+          initial={false}
+          custom={{
+            direction,
+            width: bounds.width,
+          }}
+        >
+          <motion.div
+            ref={ref}
+            variants={variants}
+            custom={{ direction, width: bounds.width }}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{
+              x: {
+                type: "spring",
+                bounce: 0.3,
+              },
+              opacity: { duration: 0.2 },
+            }}
+            className="absolute left-0 right-0 grid grid-cols-7 place-content-center"
+            key={currentMonth}
+          >
+            {days.map((day) => {
+              const formattedDate = format(day, "yyyy-MM-dd");
+              const hasAppointment = appointments[formattedDate];
+
+              return (
+                <div
+                  key={day}
+                  className={cn({
+                    "p-2": true,
+                    [dayPlacements[day.getDay()]]: true,
+                  })}
+                >
+                  <button
+                    className={cn({
+                      "w-8 h-8 rounded-full flex items-center justify-center":
+                        true,
+                      "text-gray-400": !isSameMonth(day, firstDayOfMonth),
+                      "text-gray-700": isSameMonth(day, firstDayOfMonth),
+                      "bg-blue-500 text-white": isSameDay(day, today),
+                      "bg-red-500 text-white": hasAppointment,
+                    })}
+                    onClick={() => handleDateClick(day)}
+                  >
+                    {format(day, "d")}
+                  </button>
+                </div>
+              );
+            })}
+          </motion.div>
+        </AnimatePresence>
+      </motion.div>
+
+      {selectedDate && (
+        <div className="mt-4 p-2 border-t">
+          <h2 className="text-lg font-semibold mb-2">
+            Appointments on {selectedDate}:
+          </h2>
+          <ul>
+            {appointments[selectedDate].map((appointment, index) => (
+              <li key={index} className="text-sm text-gray-700">
+                {appointment}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
-};
+}
 
-export default Calendar;
+// Usage in App component
+export default function App() {
+  return (
+    <div className="p-4">
+      <Calendar />
+    </div>
+  );
+}

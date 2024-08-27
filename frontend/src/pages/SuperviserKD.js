@@ -5,7 +5,7 @@ const Superviser=()=>{
     return(
         <>
        <SuperviserCard/>
-       <PCardSup/>
+       {/* <PCardSup/> */}
        </>
     )
 } 
