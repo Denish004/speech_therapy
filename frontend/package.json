@@ -15,13 +15,8 @@
     "react-calendar": "^5.0.0",
     "react-dom": "^18.3.1",
     "react-scripts": "5.0.1",
-<<<<<<< HEAD
     "react-typed": "^2.0.12",
     "styled-components": "^6.1.12",
-=======
-    "styled-components": "^6.1.12",
-    "vercel": "^37.1.1",
->>>>>>> 0d5abfa5d3558cf9e310379520e7a3d62f282250
     "web-vitals": "^2.1.4"
   },
   "scripts": {
