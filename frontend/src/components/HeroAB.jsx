@@ -15,7 +15,7 @@ const Hero = () => {
       <div className="relative z-10">
         <h1 className="text-4xl md:text-6xl font-bold text-gray-800 mb-8">
           Our Speech Therapy Services provide{" "}
-          <span className="text-purple-600">
+          <span className="text-white">
             <Typed
               strings={['Expertise', 'Support', 'Guidance', 'Results']}
               typeSpeed={100}
