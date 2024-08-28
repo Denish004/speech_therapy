@@ -1,10 +1,10 @@
 import React from 'react'
 import Navbar from '../components/NavbarAB';
 import Hero from '../components/HeroAB';
-import ProcessFlow from '../components/ProcessFlow';
-import FeatureHighlights from '../components/FeatureHighlights';
-import SupervisorDashboardPreview from '../components/SupervisorDashboardPreview';
-import Testimonial from '../components/Testimonial';
+import ProcessFlow from '../components/ProcessFlowAB';
+import FeatureHighlights from '../components/FeatureHighlightsAB';
+import SupervisorDashboardPreview from '../components/SupervisorDashboardPreviewAB';
+import Testimonial from '../components/TestimonialAB';
 const LandingPage = () => {
     return (
       <div>

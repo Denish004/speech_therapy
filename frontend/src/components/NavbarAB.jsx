@@ -1,8 +1,9 @@
 import React from 'react';
 import Button from './ButtonAB';
+
 const Navbar = () => {
   return (
-    <div className="bg-white p-4 shadow-md">
+    <div className="bg-white p-4 shadow-md sticky top-0 z-50">
       <div className="container mx-auto flex justify-between items-center">
         
         {/* Brand Logo with Funky Font */}
@@ -19,10 +20,7 @@ const Navbar = () => {
 
         {/* Get Started Button */}
         <div>
-          {/* <button className="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700">
-            Get Started
-          </button> */}
-          <Button/>
+          <Button />
         </div>
       </div>
     </div>

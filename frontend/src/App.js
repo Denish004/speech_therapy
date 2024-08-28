@@ -7,6 +7,7 @@ import DashboardDS from './components/DashboardDS.js';
 import GaugeChartDS from './components/ChartsDS/GaugeChartDS.js';
 import LineChartDS from './components/ChartsDS/LineChartDS.js';
 import TherapistForm from './pages/TherapistForm.jsx'
+import SuperviserKD from './pages/SuperviserKD.js'
 const App = () => {
   return (
     <Router>
@@ -18,6 +19,8 @@ const App = () => {
           <Route path="/patient" element={<DashboardDS/>}/>
           <Route path="/therapistform" element={<TherapistForm/>}/>
           {/* <TherapistForm/> */}
+          <Route path="/supervisor" element={<SuperviserKD/>}/>
+     
           {/* Add other routes here as needed */}
         </Routes>
       </div>
