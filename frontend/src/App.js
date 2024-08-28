@@ -6,15 +6,18 @@ import Home from './pages/LandingPageAB'
 import DashboardDS from './components/DashboardDS.js';
 import GaugeChartDS from './components/ChartsDS/GaugeChartDS.js';
 import LineChartDS from './components/ChartsDS/LineChartDS.js';
+import TherapistForm from './pages/TherapistForm.jsx'
 const App = () => {
   return (
     <Router>
       <div>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/therapist" element={<TherapistSW />} />{/* Route for TherapistSW component */}
+          <Route path="/therapist" element={<TherapistSW />}/>
+          {/* //  Route for TherapistSW component */}
           <Route path="/patient" element={<DashboardDS/>}/>
-     
+          <Route path="/therapistform" element={<TherapistForm/>}/>
+          {/* <TherapistForm/> */}
           {/* Add other routes here as needed */}
         </Routes>
       </div>

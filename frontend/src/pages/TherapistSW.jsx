@@ -50,9 +50,7 @@ const App = () => {
               </div>
               {/* Uncomment to add Calendar */}
               <div className='mt-5 w-full' style={{marginLeft:'21px'}}>
-               
                 <Calendar />
-              
               </div>
             </div>
           </div>
