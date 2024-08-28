@@ -12,8 +12,8 @@ const GaugeChartDS = () => {
         nrOfLevels={3}
         colors={["green", "orange", "red"]}
         arcWidth={0.3}
-        percent={0.37}
-        textColor={'black'}
+        percent={0.80}
+        textColor={'dark-gray'}
         // hideText={true} // If you want to hide the text
       />
     </div>
