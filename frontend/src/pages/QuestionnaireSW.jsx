@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const questions = [
   {
@@ -128,46 +129,65 @@ const SpeechTherapyQuestionnaire = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-purple-50">
-      <div className="max-w-2xl mx-auto p-6 bg-purple-100 rounded-lg shadow-md">
+      <motion.div
+        className="max-w-2xl mx-auto p-6 bg-purple-100 rounded-lg shadow-md"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
         <h2 className="text-2xl font-bold mb-6 text-purple-800 text-center">
           Speech Therapy Questionnaire
         </h2>
         <p className="text-center text-purple-600 mb-8">Help us understand your needs better</p>
         <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label htmlFor={questions[currentStep].id} className="block text-purple-700 mb-2">
-              {questions[currentStep].label}
-            </label>
-            {renderQuestion(questions[currentStep])}
-          </div>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={questions[currentStep].id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+            >
+              <label htmlFor={questions[currentStep].id} className="block text-purple-700 mb-2">
+                {questions[currentStep].label}
+              </label>
+              {renderQuestion(questions[currentStep])}
+            </motion.div>
+          </AnimatePresence>
           <div className="flex justify-between">
-            <button
+            <motion.button
               type="button"
               onClick={prevStep}
               disabled={currentStep === 0}
               className="bg-white text-black py-2 px-4 rounded hover:bg-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               Previous
-            </button>
+            </motion.button>
             {currentStep < questions.length - 1 ? (
-              <button
+              <motion.button
                 type="button"
                 onClick={nextStep}
                 className="bg-black text-white py-2 px-4 rounded hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
                 Next
-              </button>
+              </motion.button>
             ) : (
-              <button
+              <motion.button
                 type="submit"
                 className="bg-black text-white py-2 px-4 rounded hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
                 Submit Questionnaire
-              </button>
+              </motion.button>
             )}
           </div>
         </form>
-      </div>
+      </motion.div>
     </div>
   );
 };
