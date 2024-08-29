@@ -58,7 +58,7 @@ const StyledWrapper = styled.div`
 .card {
   overflow: visible;
   margin:30px;
-  width: 890px;
+  width: 950px;
   height: 254px;
 }
 
@@ -72,7 +72,7 @@ const StyledWrapper = styled.div`
 }
 
 .front, .back {
-  background-color: #073307;
+  background-color: #9cdb9c;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -98,7 +98,7 @@ const StyledWrapper = styled.div`
   width: 260px;
   height: 260%;
   
-      background: linear-gradient(90deg, transparent, #0bed0b, #0bed0b, #0bed0b, #0bed0b, transparent);
+  background: linear-gradient(90deg, transparent, #073307, #073307, #073307, #073307, transparent);
 
   animation: rotation_481 5000ms infinite linear;
 }
@@ -107,9 +107,9 @@ const StyledWrapper = styled.div`
   position: absolute;
   width: 99%;
   height: 99%;
-  background-color: #073307;
+  background-color: #9cdb9c;
   border-radius: 5px;
-  color: white;
+  color: #073307;
   display: flex;
   flex-direction: row;
   justify-content: center;
