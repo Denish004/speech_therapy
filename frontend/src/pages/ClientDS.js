@@ -46,7 +46,7 @@ import React from "react";
 
 // import ProgressChart from './ProgressChart';
 // import Messaging from './MessagingDS';
-import Appointments from "../components/AppointmentsDS";
+import SessionsDS from "../components/SessionsDS";
 // import { Scheduler } from "@aldabil/react-scheduler";
 // import { ComplexNavbar } from '@material-tailwind/react';
 // import  ComplexNavbar  from './ComplexNavbarDS';
@@ -63,7 +63,7 @@ const Dashboard = () => {
 
       <PatientCard />
 
-      <div className="mt-8 flex justify-around  ">
+      <div className="mt-8 flex justify-evenly ">
         <div>
         <h1 className="flex justify-center text-3xl mb-5 font-custom">Your Progress</h1>
         <LineChartCardDS />
@@ -104,7 +104,7 @@ const Dashboard = () => {
                 </div>
             </div> */}
       <div className="bg-white shadow-md rounded-lg p-6 mt-6">
-        <Appointments />
+        <SessionsDS />
       </div>
     </div>
   );

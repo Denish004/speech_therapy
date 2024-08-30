@@ -15,7 +15,7 @@ export default function PatientCardLottie() {
 
   return (
    <div className="">
-<Lottie options={defaultOptions} height={300} />
+<Lottie options={defaultOptions} height={350} />
 </div>
   
   
