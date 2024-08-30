@@ -16,11 +16,14 @@ const SupervisorDashboardPreview = () => {
             details="5 cases awaiting your review."
             buttonText="Review"
           />
+          <div style={{marginLeft:'103px'}}>
+
           <Card
             title="Completed Cases"
             details="12 cases reviewed and closed."
             buttonText="Details"
           />
+          </div>
         </div>
       </div>
     </div>
