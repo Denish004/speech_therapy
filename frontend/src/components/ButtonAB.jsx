@@ -6,8 +6,8 @@ const Button = () => {
     <StyledWrapper>
       <div className="scene">
         <div className="cube">
-          <span className="side top">Easter</span>
-          <span className="side front">Happy</span>
+          <span className="side top">Learn More</span>
+          <span className="side front">Join Now</span>
         </div>
       </div>
     </StyledWrapper>

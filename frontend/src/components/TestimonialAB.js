@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import styled from "styled-components";
 
 const testimonials = [
   { name: 'John Doe', feedback: 'This software has streamlined our therapy process and made case management so much easier!', role: 'Therapist' },
@@ -8,21 +9,96 @@ const testimonials = [
 
 const Testimonial = () => {
   return (
-    <div className="bg-white py-12">
-      <h2 className="text-3xl font-bold text-center text-purple-600 mb-8">What People Are Saying</h2>
-      <div className="flex justify-center">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <div key={index} className="bg-[rgb(249,248,240)] p-6 shadow-lg rounded-lg">
-              <p className="text-gray-700 italic">"{testimonial.feedback}"</p>
-              <h3 className="text-xl font-bold text-gray-800 mt-4">{testimonial.name}</h3>
-              <p className="text-gray-600">{testimonial.role}</p>
+    <StyledWrapper>
+      <h2 className="title">What People Are Saying</h2>
+      <div className="testimonials">
+        {testimonials.map((testimonial, index) => (
+          <div key={index} className="card">
+            <div className="content">
+              <div className="name-role">
+                <h3 className="name">{testimonial.name}</h3>
+                <p className="role">{testimonial.role}</p>
+              </div>
+              <p className="feedback">"{testimonial.feedback}"</p>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
-    </div>
+    </StyledWrapper>
   );
 };
+
+const StyledWrapper = styled.div`
+  .title {
+    text-align: center;
+    font-size: 2rem;
+    color: #6b46c1; /* Shade of purple */
+    margin-bottom: 2rem;
+  }
+
+  .testimonials {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 0 2rem;
+  }
+
+  .card {
+    position: relative;
+    overflow: hidden;
+    background: #faf5ff; /* Light purple shade */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    cursor: pointer;
+    height: 100%;
+    min-height: 320px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .content {
+    text-align: center;
+    transition: transform 0.5s ease;
+  }
+
+  .name-role {
+    transition: opacity 0.5s ease;
+  }
+
+  .name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #4c51bf; /* A deeper, elegant purple */
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+  }
+
+  .role {
+    font-size: 1rem;
+    color: #a0aec0; /* Softer gray for contrast */
+  }
+
+  .feedback {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.2rem;
+    color: #7c3aed; /* Deeper shade of purple */
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    padding: 0 1rem;
+  }
+
+  .card:hover .name-role {
+    opacity: 0;
+  }
+
+  .card:hover .feedback {
+    opacity: 1;
+  }
+`;
 
 export default Testimonial;
