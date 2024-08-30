@@ -25,7 +25,7 @@ const Hero = () => {
           </span>
         </h1>
 
-        <p className="text-lg md:text-2xl text-gray-700 max-w-2xl mx-auto mb-12">
+        <p className="text-lg md:text-2xl text-white max-w-2xl mx-auto mb-12">
           Partner with an experienced speech therapist for live sessions — with weekly practice activities and support to reach your goals faster.
         </p>
 

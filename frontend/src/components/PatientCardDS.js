@@ -52,10 +52,10 @@ import GaugeChartDS from "./ChartsDS/GaugeChartDS";
 const PatientCardDS = () => {
   return (
     <div >
-      <div className="absolute -z-[5] w-full ">
+      <div className="absolute  w-full ">
     <PatientCardLottie/>
     </div>
-   <div className="flex justify-center py-10 " >
+   <div className="flex justify-center py-10" >
     <StyledWrapper className="w-3/4  ">
       <div className="card ">
         <div className="card-info">
@@ -92,13 +92,13 @@ const PatientCardDS = () => {
 
 const StyledWrapper = styled.div`
   .card {
-  --background: linear-gradient(to right, #74ebd5 0%, #acb6e5 100%);
+  --background: linear-gradient(to right, #461299 0%, #acb6e5 100%);
   width: full;
   height: 254px;
   padding: 5px;
   border-radius: 1rem;
   overflow: visible;
-  background: #74ebd5;
+  background: #461299;
   background: var(--background);
   position: relative;
   z-index: 1;
@@ -117,13 +117,13 @@ const StyledWrapper = styled.div`
 }
 
 .card::before {
-  background: linear-gradient(to bottom right, #f6d365 0%, #fda085 100%);
-  transform: rotate(0.5deg);
+  background: linear-gradient(to bottom right, #f5c327 0%, #fda085 100%);
+  transform: rotate(0.7deg);
 }
 
 .card::after {
-  background: linear-gradient(to top right, #84fab0 0%, #8fd3f4 100%);
-  transform: rotate(-0.5deg);
+  background: linear-gradient(to top right, #3bed7e 0%,#87d8ff 100%);
+  transform: rotate(-0.7deg);
 }
 
 .card-info {

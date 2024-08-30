@@ -11,12 +11,12 @@
 //               console.log(patientId);
 //               const response = await fetch(`http://localhost:3001/api/patients/${patientId}`);
 //               const json = await response.json();
-      
+
 //               if (response.ok) {
 //                 //   dispatch({ type: 'SET_PROPERTY', payload: json });
 //                 console.log(json);
 //                 setPatientData(json)
-                
+
 //               }
 //             } catch (error) {
 //               console.error("Error while fetching data:", error);
@@ -25,7 +25,6 @@
 //         //   console.log("Details :", json);
 //           fetchData();
 //         }, [patientId]);
-       
 
 //     return (
 //         <div>
@@ -43,33 +42,41 @@
 // };
 
 // export default Dashboard;
-import React from 'react';
+import React from "react";
 
 // import ProgressChart from './ProgressChart';
-import Messaging from './MessagingDS';
-import Appointments from './AppointmentsDS';
+// import Messaging from './MessagingDS';
+import SessionsDS from "../components/SessionsDS";
 // import { Scheduler } from "@aldabil/react-scheduler";
 // import { ComplexNavbar } from '@material-tailwind/react';
-import  ComplexNavbar  from './ComplexNavbarDS';
-import  PatientCard from './PatientCardDS';
-import Navbar from './NavbarAB';
-
+// import  ComplexNavbar  from './ComplexNavbarDS';
+import PatientCard from "../components/PatientCardDS";
+import Navbar from "../components/NavbarAB";
+import LineChartCardDS from "../components/ChartsDS/LineChartCardDS";
+import Calendar from "../components/CalendarDS";
+import CalendarStyledDS from "../components/CalendarStyledDS";
 const Dashboard = () => {
-    return (
-        <div className="container">
-            {/* <ComplexNavbar/> */}
-              <Navbar/>
+  return (
+    <div className="container">
+      {/* <ComplexNavbar/> */}
+      <Navbar />
 
+      <PatientCard />
 
+      <div className="mt-8 flex justify-evenly ">
+        <div>
+        <h1 className="flex justify-center text-3xl mb-5 font-custom">Your Progress</h1>
+        <LineChartCardDS />
+        </div>
+        <div>
+        <h1 className="flex justify-center text-3xl mb-5 font-custom">Your Schedule</h1>
+        <CalendarStyledDS />
+        </div>
+        
+      </div>
 
-
-              <PatientCard/>
-          
-
-  
-
-            <h2 className="text-3xl font-bold mb-6">Patient Dashboard</h2>
-            {/* <Scheduler 
+      {/* <h2 className="text-3xl font-bold mb-6">Patient Dashboard</h2> */}
+      {/* <Scheduler 
   view="month"
   events={[
     {
@@ -86,7 +93,7 @@ const Dashboard = () => {
     },
   ]}
 /> */}
-            {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="bg-white shadow-md rounded-lg p-6">
                     <h3 className="text-xl font-semibold mb-4">Therapy Progress</h3>
                     <ProgressChart />
@@ -96,12 +103,11 @@ const Dashboard = () => {
                     <Messaging />
                 </div>
             </div> */}
-            <div className="bg-white shadow-md rounded-lg p-6 mt-6">
-                <Appointments />
-            </div>
-        </div>
-    );
+      <div className="bg-white shadow-md rounded-lg p-6 mt-6">
+        <SessionsDS />
+      </div>
+    </div>
+  );
 };
 
 export default Dashboard;
-

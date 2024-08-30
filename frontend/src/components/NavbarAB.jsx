@@ -8,7 +8,7 @@ const Navbar = () => {
         
         {/* Brand Logo with Funky Font */}
         <a href="/" className="text-3xl font-bold" style={{ fontFamily: 'Cursive, sans-serif' }}>
-          MyBrand
+          TheraSpeech
         </a>
 
         {/* Centered Menu Links */}

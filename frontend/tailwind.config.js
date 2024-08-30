@@ -5,7 +5,12 @@ module.exports = {
    
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily:{
+        custom :[ "Dancing Script", "cursive"],
+      },
+  
+    },
   },
   plugins: [
     require('flowbite/plugin')
