@@ -52,10 +52,10 @@ import GaugeChartDS from "./ChartsDS/GaugeChartDS";
 const PatientCardDS = () => {
   return (
     <div >
-      <div className="absolute -z-[5] w-full ">
+      <div className="absolute  w-full ">
     <PatientCardLottie/>
     </div>
-   <div className="flex justify-center py-10 " >
+   <div className="flex justify-center py-10" >
     <StyledWrapper className="w-3/4  ">
       <div className="card ">
         <div className="card-info">

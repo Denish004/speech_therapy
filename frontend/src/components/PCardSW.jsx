@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Outlet, Link } from "react-router-dom";
 
 const Card = () => {
   return (
@@ -25,7 +26,7 @@ const Card = () => {
             </div>
             <div className="bottom">
               <div className="view-more">
-                <button className="view-more-button">View more</button>
+                <Link to="/patient" className="view-more-button">View more</Link>
                 <svg
                   className="svg"
                   xmlns="http://www.w3.org/2000/svg"
