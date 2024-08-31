@@ -10,19 +10,19 @@ const MatchTherapists = ({ patientId }) => {
     const fetchData = async () => {
       try {
         // Fetch patient data
-        const patientResponse = await fetch(`http://localhost:8080/api/patients/66d2e949ac715c9dc885c050`);
+        const patientResponse = await fetch(`https://speech-therapy.onrender.com/api/patients/66d2e949ac715c9dc885c050`);
         const fetchedPatient = await patientResponse.json();
         setPatient(fetchedPatient);
 
         // Fetch therapists data
-        const therapistsResponse = await fetch('http://localhost:8080/api/therapists');
+        const therapistsResponse = await fetch('https://speech-therapy.onrender.com/api/therapists');
         const fetchedTherapists = await therapistsResponse.json();
         setTherapists(fetchedTherapists);
 
         if (fetchedPatient && fetchedTherapists.length) {
           const matches = findBestTherapists(fetchedPatient, fetchedTherapists);
           console.log('Match Results:', matches);
-          setResults(matches.slice(0, 3)); // Show only top 3 results
+          setResults(matches);
         }
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -86,7 +86,7 @@ const MatchTherapists = ({ patientId }) => {
 
   const storeResults = async (patientId, therapistId, score) => {
     try {
-      await fetch(`http://localhost:8080/api/matching-results/66d2e949ac715c9dc885c050`, {
+      await fetch(`https://speech-therapy.onrender.com/api/matching-results/66d2e949ac715c9dc885c050`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -107,39 +107,39 @@ const MatchTherapists = ({ patientId }) => {
   };
 
   if (!patient || !therapists.length) {
-    return <div className="text-center text-gray-700">Loading...</div>;
+    return <div>Loading...</div>;
   }
 
   return (
     <div className="p-4">
-      <h1 className="text-xl font-bold mb-4">Matching Results for Patient {patientId}</h1>
-      <table className="min-w-full bg-white border border-gray-200">
-        <thead className="bg-gray-100">
-          <tr>
-            <th className="p-2 border-b">Therapist ID</th>
-            <th className="p-2 border-b">Name</th>
-            <th className="p-2 border-b">Specializations</th>
-            <th className="p-2 border-b">Languages</th>
-            <th className="p-2 border-b">Location</th>
-            <th className="p-2 border-b">Session Cost</th>
-            <th className="p-2 border-b">Match Score</th>
-            <th className="p-2 border-b">Action</th>
+      <h1 className="text-2xl font-bold mb-4">Matching Results for Patient {patientId}</h1>
+      <table className="min-w-full bg-white border border-gray-300 rounded-lg">
+        <thead>
+          <tr className="bg-gray-100 border-b border-gray-300">
+            <th className="py-2 px-4 text-left">Therapist ID</th>
+            <th className="py-2 px-4 text-left">Name</th>
+            <th className="py-2 px-4 text-left">Specializations</th>
+            <th className="py-2 px-4 text-left">Languages</th>
+            <th className="py-2 px-4 text-left">Location</th>
+            <th className="py-2 px-4 text-left">Session Cost</th>
+            <th className="py-2 px-4 text-left">Match Score</th>
+            <th className="py-2 px-4 text-left">Action</th>
           </tr>
         </thead>
         <tbody>
-          {results.map(({ therapistId, score, name, specializations, languages, location, session_cost }) => (
-            <tr key={therapistId} className="hover:bg-gray-50">
-              <td className="p-2 border-b">{therapistId}</td>
-              <td className="p-2 border-b">{name}</td>
-              <td className="p-2 border-b">{specializations.join(', ')}</td>
-              <td className="p-2 border-b">{languages.join(', ')}</td>
-              <td className="p-2 border-b">{`${location.city}, ${location.state}, ${location.country}`}</td>
-              <td className="p-2 border-b">{`${session_cost.currency} ${session_cost.amount}`}</td>
-              <td className="p-2 border-b">{score.toFixed(2)}</td>
-              <td className="p-2 border-b">
+          {results.slice(0, 3).map(({ therapistId, score, name, specializations, languages, location, session_cost }) => (
+            <tr key={therapistId} className="border-b border-gray-300">
+              <td className="py-2 px-4">{therapistId}</td>
+              <td className="py-2 px-4">{name}</td>
+              <td className="py-2 px-4">{specializations.join(', ')}</td>
+              <td className="py-2 px-4">{languages.join(', ')}</td>
+              <td className="py-2 px-4">{`${location.city}, ${location.state}, ${location.country}`}</td>
+              <td className="py-2 px-4">{`${session_cost.currency} ${session_cost.amount}`}</td>
+              <td className="py-2 px-4">{score.toFixed(2)}</td>
+              <td className="py-2 px-4">
                 <button
                   onClick={() => handleClick(therapistId, score)}
-                  className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                  className="bg-blue-500 text-white py-1 px-4 rounded hover:bg-blue-600"
                 >
                   Select
                 </button>
@@ -148,7 +148,7 @@ const MatchTherapists = ({ patientId }) => {
           ))}
         </tbody>
       </table>
-      {selectedTherapistId && <div className="mt-4 text-lg">Selected Therapist ID: {selectedTherapistId}</div>}
+      {selectedTherapistId && <div className="mt-4">Selected Therapist ID: {selectedTherapistId}</div>}
     </div>
   );
 };
