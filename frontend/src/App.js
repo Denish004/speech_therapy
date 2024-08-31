@@ -14,6 +14,7 @@ import Matching from './components/MatchingSW.jsx'
 import ReviewSup from "./components/ReviewSupKD.jsx";
 
 import TheraReview from "./pages/theraReviewKD.js";
+import Contact from "./pages/ContactUsKD.js";
 
 const App = () => {
   return (
@@ -31,6 +32,7 @@ const App = () => {
           <Route path="/question"  element={<Questionnaire/>}/>
           <Route path="/match"  element={<Matching/>}/>
           <Route path="theraReview" element={<TheraReview/>}/>
+          <Route path="/contact" element={<Contact/>}/>
 
         </Routes>
       </div>
