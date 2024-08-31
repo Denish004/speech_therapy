@@ -6,7 +6,7 @@ const Loader = () => {
       
       <StyledWrapper>
         <div className="h-100">
-      <div className="loader" style={{height:'700px',marginLeft:"300px"}}>
+      <div className="loaderSW" style={{height:'700px',marginLeft:"300px"}}>
         <span className="l">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -121,7 +121,7 @@ const Loader = () => {
 const StyledWrapper = styled.div`
   /* Ensure that you have set a background image or background color, as the text is transparent and not designed with a solid color. */
   
-  .loader {
+  .loaderSW {
     --ANIMATION-DELAY-MULTIPLIER: 70ms;
     
     padding: 0;
@@ -134,7 +134,7 @@ const StyledWrapper = styled.div`
     
   }
 
-  .loader span {
+  .loaderSW span {
     padding: 0;
     margin: 0;
     font-size: 6rem; /* Increase font size here */
@@ -144,31 +144,31 @@ const StyledWrapper = styled.div`
     animation: hideAndSeek 1s alternate infinite cubic-bezier(0.86, 0, 0.07, 1);
   }
 
-  .loader .l {
+  .loaderSW .l {
     animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 0);
   }
 
-  .loader .o {
+  .loaderSW .o {
     animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 1);
   }
 
-  .loader .a {
+  .loaderSW .a {
     animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 2);
   }
 
-  .loader .d {
+  .loaderSW .d {
     animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 3);
   }
 
-  .loader .ispan {
+  .loaderSW .ispan {
     animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 4);
   }
 
-  .loader .n {
+  .loaderSW .n {
     animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 5);
   }
 
-  .loader .g {
+  .loaderSW .g {
     animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 6);
   }
 
