@@ -13,9 +13,10 @@ const Navbar = () => {
 
         {/* Centered Menu Links */}
         <div className="hidden md:flex space-x-6 mx-auto">
-          <a href="#" className="text-gray-700 hover:text-purple-600">Home</a>
+          <a href="/" className="text-gray-700 hover:text-purple-600">Home</a>
           <a href="#" className="text-gray-700 hover:text-purple-600">About</a>
           <a href="#" className="text-gray-700 hover:text-purple-600">Services</a>
+          <a href="/contact" className="text-gray-700 hover:text-purple-600">Contact us</a>
         </div>
 
         {/* Get Started Button */}
