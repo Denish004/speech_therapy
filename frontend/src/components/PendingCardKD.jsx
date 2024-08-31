@@ -61,7 +61,7 @@ const StyledWrapper = styled.div`
 .card1{
   width: 325px;
   height: 479px;
-  background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
+  background-image: linear-gradient(163deg, #f2c5f4 0%, #c4453f 100%);
   border-radius: 20px;
   transition: all 0.3s;
   display: flex;

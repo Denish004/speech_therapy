@@ -1,6 +1,8 @@
 import SuperviserCard from "../components/CardsSupKD"
 import PCardSup from "../components/PCardSup"
+
 import PendingCard from "../components/PendingCardKD"
+import Card from "../components/ProfileSW"
 
 const Superviser=()=>{
     return(

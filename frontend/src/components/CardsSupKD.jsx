@@ -72,7 +72,7 @@ const StyledWrapper = styled.div`
 }
 
 .front, .back {
-  background-color: #9cdb9c;
+  background-color: rgb(195 190 228);
   position: absolute;
   width: 100%;
   height: 100%;
@@ -107,7 +107,7 @@ const StyledWrapper = styled.div`
   position: absolute;
   width: 99%;
   height: 99%;
-  background-color: #9cdb9c;
+  background-color: rgb(195 190 228);
   border-radius: 5px;
   color: #073307;
   display: flex;

@@ -57,7 +57,7 @@ import Calendar from "../components/CalendarDS";
 import CalendarStyledDS from "../components/CalendarStyledDS";
 const Dashboard = () => {
   return (
-    <div className="container">
+    <div  >
       {/* <ComplexNavbar/> */}
       <Navbar />
 
