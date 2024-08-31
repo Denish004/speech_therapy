@@ -11,6 +11,7 @@ import GaugeChartDS from "./components/ChartsDS/GaugeChartDS.js";
 import LineChartDS from "./components/ChartsDS/LineChartDS.js";
 import TherapistForm from "./pages/TherapistFormSW.jsx";
 import SuperviserKD from "./pages/SuperviserKD.js";
+import Matching from './components/MatchingSW.jsx'
 const App = () => {
   return (
     <Router>
@@ -18,16 +19,15 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/therapist" element={<TherapistSW />} />
-          {/* //  Route for TherapistSW component */}
+        
           <Route path="/patient" element={<ClientDS/>}/>
           <Route path="/therapistform" element={<TherapistForm />} />
-          {/* <TherapistForm/> */}
+          
           <Route path="/supervisor" element={<SuperviserKD/>}/>
           <Route path="/detailsSup" element={<DetailsSupKD/>}/>
           <Route path="/question"  element={<Questionnaire/>}/>
-      
+          <Route path="/match"  element={<Matching/>}/>
 
-          {/* Add other routes here as needed */}
         </Routes>
       </div>
     </Router>
