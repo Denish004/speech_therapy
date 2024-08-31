@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import TherapistSW from "./pages/TherapistSW";
+
 import Home from "./pages/LandingPageAB";
 // import PatientCardDS from './components/PatientCardDS.js';
 // import DashboardDS from './components/DashboardDS.js';
@@ -8,7 +9,9 @@ import Home from "./pages/LandingPageAB";
 // import LineChartDS from './components/ChartsDS/LineChartDS.js';
 // import TherapistForm from './pages/TherapistFormSW.jsx'
 // import SuperviserKD from './pages/SuperviserKD.js'
+
 import Questionnaire from './pages/QuestionnaireSW.jsx'
+import DetailsSupKD from './pages/DetailsSupKD.jsx';
 import ClientDS from "./pages/ClientDS.js";
 import GaugeChartDS from "./components/ChartsDS/GaugeChartDS.js";
 import LineChartDS from "./components/ChartsDS/LineChartDS.js";
