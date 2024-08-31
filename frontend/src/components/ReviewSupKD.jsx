@@ -74,7 +74,7 @@ const StyledWrapper = styled.div`
   width: 1370px;
   height: 460px;
   border-radius: 14px;
-  z-index: 1111;
+  z-index: 11;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -94,7 +94,7 @@ const StyledWrapper = styled.div`
   background: rgb(195 190 228);
   backdrop-filter: blur(24px);
   border-radius: 10px;
-  overflow: hidden;
+  // overflow: hidden;
   outline: 2px solid white;
 }
 
