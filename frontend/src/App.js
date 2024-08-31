@@ -12,7 +12,7 @@ import TherapistForm from "./pages/TherapistFormSW.jsx";
 import SuperviserKD from "./pages/SuperviserKD.js";
 import Matching from './components/MatchingSW.jsx'
 import ReviewSup from "./components/ReviewSupKD.jsx";
-import DetailsSupKD from "./pages/DetailsSupKD.jsx";
+
 import TheraReview from "./pages/theraReviewKD.js";
 
 const App = () => {
