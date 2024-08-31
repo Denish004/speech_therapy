@@ -39,9 +39,10 @@
     "react-router-dom": "^6.26.1",
     "react-scripts": "5.0.1",
     "react-typed": "^2.0.12",
-
     "react-use-measure": "^2.1.1",
+    "recordrtc": "^5.6.2",
     "styled-components": "^6.1.12",
+    "txtgen": "^3.0.7",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

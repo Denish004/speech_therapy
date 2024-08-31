@@ -55,6 +55,7 @@ import Navbar from "../components/NavbarAB";
 import LineChartCardDS from "../components/ChartsDS/LineChartCardDS";
 import Calendar from "../components/CalendarDS";
 import CalendarStyledDS from "../components/CalendarStyledDS";
+import StutterAnalysis from "../components/StutterAnalysis";
 const Dashboard = () => {
   return (
     <div  >
@@ -106,6 +107,7 @@ const Dashboard = () => {
       <div className="bg-white shadow-md rounded-lg p-6 mt-6">
         <SessionsDS />
       </div>
+      <StutterAnalysis/>
     </div>
   );
 };

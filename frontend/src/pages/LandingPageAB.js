@@ -6,6 +6,7 @@ import FeatureHighlights from '../components/FeatureHighlightsAB';
 import SupervisorDashboardPreview from '../components/SupervisorDashboardPreviewAB';
 import Testimonial from '../components/TestimonialAB';
 import Footer from '../components/FooterAB';
+import SpeechTherapyCard from '../components/SpeechTherapyCard';
 const LandingPage = () => {
     return (
       <div>
@@ -13,6 +14,7 @@ const LandingPage = () => {
         <Hero />
         <ProcessFlow />
         <FeatureHighlights />
+        <SpeechTherapyCard/>
         <SupervisorDashboardPreview />
         <Testimonial />
         <Footer />       

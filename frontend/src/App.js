@@ -11,7 +11,7 @@ import Home from "./pages/LandingPageAB";
 // import SuperviserKD from './pages/SuperviserKD.js'
 
 import Questionnaire from './pages/QuestionnaireSW.jsx'
-import DetailsSupKD from './pages/DetailsSupKD.jsx';
+// import DetailsSupKD from './pages/DetailsSupKD.jsx';
 import ClientDS from "./pages/ClientDS.js";
 import GaugeChartDS from "./components/ChartsDS/GaugeChartDS.js";
 import LineChartDS from "./components/ChartsDS/LineChartDS.js";
