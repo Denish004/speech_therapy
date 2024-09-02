@@ -8,10 +8,11 @@ const cors = require('cors');
 const app = express();
 
 app.use(cors({
-  origin: ['http://localhost:3000','https://speech-therapy1.vercel.app/'], // Allow requests from this origin
+  origin: '*', // Allow requests from any origin
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow these methods
   credentials: true // Allow credentials (cookies, etc.)
 }));
+
 app.use(express.json());
 
 app.use((req, res, next) => {
