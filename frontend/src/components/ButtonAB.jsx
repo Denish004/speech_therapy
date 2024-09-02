@@ -4,12 +4,14 @@ import styled from "styled-components";
 const Button = () => {
   return (
     <StyledWrapper>
+          <a href="/login" >
       <div className="scene">
         <div className="cube">
           <span className="side top">Learn More</span>
           <span className="side front">Join Now</span>
         </div>
       </div>
+          </a>
     </StyledWrapper>
   );
 };

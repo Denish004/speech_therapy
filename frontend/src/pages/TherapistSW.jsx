@@ -20,7 +20,7 @@ const App = () => {
   return (
     <>
      {!loading && <Navbar/>}
-    <div className='flex flex-col lg:flex-row h-full min-h-screen bg-[rgb(249,248,240)]'>
+    <div className='flex flex-col lg:flex-row w-full h-full min-h-screen bg-[rgb(249,248,240)]'>
       {loading ? (
         <Loader /> 
       ) : (
