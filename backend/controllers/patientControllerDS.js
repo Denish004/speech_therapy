@@ -1,41 +1,20 @@
 const mongoose =require('mongoose');
-const PatientModel = require('../models/PatientModelDS.js');
+
 // Get all patient data
-const getPatientData = async (req, res) => {
-    try {
-        const patient = await PatientModel.findById(req.params.id);
-        res.json(patient);
-    } catch (err) {
-        res.status(400).json({ error: err.message });
-    }
+const {Patient} = require('../models/MatchSW');
+
+const registerPatient = async (req, res) => {
+  try {
+    const patientData = req.body;
+    const newPatient = new Patient(patientData);
+    await newPatient.save();
+    res.status(201).json(newPatient);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
 };
 
-// Update patient progress
-const updateProgress = async (req, res) => {
-    try {
-        const { sessionDate, activities, progress } = req.body;
-        const patient = await Patient.findById(req.params.id);
-        patient.progress.push({ sessionDate, activities, progress });
-        await patient.save();
-        res.json(patient);
-    } catch (err) {
-        res.status(400).json({ error: err.message });
-    }
+module.exports = {
+  registerPatient,
 };
-
-// Add feedback
-const addFeedback = async (req, res) => {
-  
-    try {
-        const { feedback } = req.body;
-        const patient = await PatientModel.findById(req.params.id);
-       
-        patient.feedback = feedback;
-        await patient.save();
-        res.json(patient);
-    } catch (err) {
-        res.status(400).json({ error: err.message });
-    }
-};
-
-module.exports = { getPatientData, addFeedback, updateProgress};

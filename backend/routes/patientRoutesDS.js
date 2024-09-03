@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const {Patient,Therapist,MatchingResult} = require('../models/MatchSW.jsx');
+const {Patient,Therapist,MatchingResult} = require('../models/MatchSW');
 
 // Fetch a specific patient
 router.get('/patients/:id', async (req, res) => {
