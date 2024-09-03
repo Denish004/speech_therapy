@@ -10,7 +10,7 @@ const MatchTherapists = ({ patientId }) => {
     const fetchData = async () => {
       try {
         // Fetch patient data
-        const patientResponse = await fetch(`https://speech-therapy.onrender.com/api/patients/66d2e949ac715c9dc885c050`);
+        const patientResponse = await fetch(`https://speech-therapy.onrender.com/api/patients/${patientId}`);
         const fetchedPatient = await patientResponse.json();
         setPatient(fetchedPatient);
 
@@ -86,7 +86,7 @@ const MatchTherapists = ({ patientId }) => {
 
   const storeResults = async (patientId, therapistId, score) => {
     try {
-      await fetch(`https://speech-therapy.onrender.com/api/matching-results/66d2e949ac715c9dc885c050`, {
+      await fetch(`https://speech-therapy.onrender.com/api/matching-results/${patientId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

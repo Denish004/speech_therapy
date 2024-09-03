@@ -11,6 +11,7 @@ import Matching from './components/MatchingSW.jsx';
 import TheraReview from "./pages/theraReviewKD.js";
 import Contact from "./pages/ContactUsKD.js";
 import Signup_new from "./components/Signup_new.jsx";
+import SignUpSW from "./components/RegisterSW.jsx";
 import Login_new from "./components/Login_new.jsx";
 import { useAuthContext } from "./hooks/useAuthContext.js";
 
@@ -48,6 +49,7 @@ const App = () => {
           <Route path="/detailsSup" element={<DetailsSupKD />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/match" element={<Matching />} />
+          <Route path="/register" element={<SignUpSW/>}/>
         </Routes>
       </div>
     </Router>
