@@ -22,7 +22,7 @@ const Superviser=()=>{
         const fetchNames = async () => {
             try {
                 // Fetching match data
-                const response = await axios.get('http://localhost:8080/api/supervisor/getAll');
+                const response = await fetch('http://localhost:8080/api/supervisor/getAll');
                 const matchResponses = await response.json();
 
                 console.log(matchResponses);
