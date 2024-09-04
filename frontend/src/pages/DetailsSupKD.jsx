@@ -2,7 +2,7 @@ import Navbar from "../components/NavbarAB"
 import ReviewInput from "../components/ReviewInput"
 import ReviewSup from "../components/ReviewSupKD"
 import Superviser from "./SuperviserKD"
-
+import { useParams, useNavigate } from 'react-router-dom';
 const DetailsSupKD=()=>{
     const { patient_id } = useParams();
 

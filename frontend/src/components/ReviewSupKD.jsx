@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import React, { useState, useEffect } from "react";
+import axios from "axios"; // Add axios here
+import { useNavigate } from "react-router-dom";
 
 
 const ReviewSup=({patient_id})=>{
@@ -34,7 +37,7 @@ const ReviewSup=({patient_id})=>{
                             <strong style={{fontSize:30}}>{patientDetails.therapist_name}</strong></div>
             </div>
             <div style={{marginLeft:120,margin:50}}>
-              
+
                 <h1 style={{fontFamily:"sans-serif",fontSize:30,fontWeight:"bold"}}>Session 1</h1>
                 <hr style={{height:28}}/>
                 <div style={{ display: "flex", alignItems: "center" }}>
