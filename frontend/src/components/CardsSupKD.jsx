@@ -2,13 +2,15 @@ import styled from "styled-components";
 import React, { useEffect, useState } from 'react';
 // import styled from 'styled-components';
 import axios from 'axios';
+import { Link } from "react-router-dom";
 
 // export default SuperviserCard;
-const SuperviserCard = ({patient_id,therapist_id}) => {
+const SuperviserCard = (props) => {
   const [patientName, setPatientName] = useState('');
     const [therapistName, setTherapistName] = useState('');
-
+console.log(props)
     useEffect(() => {
+
         const fetchNames = async () => {
             try {
                 // Fetching match data
@@ -16,11 +18,13 @@ const SuperviserCard = ({patient_id,therapist_id}) => {
                 // const { patient_id, therapist_id } = matchResponse.data;
 
                 // Fetching patient and therapist names
-                const patientResponse = await fetch(`http://localhost:8080/api/patient/${patient_id}`);
-                const therapistResponse = await fetch(`http://localhost:8080/api/therapist/${therapist_id}`);
+                console.log("jd jdnend");
+                // const patientResponse = await fetch(`http://localhost:8081/api/patient/${patientId}`);
+                // const therapistResponse = await fetch(`http://localhost:8081/api/therapist/${therapistId}`);
 
-                setPatientName(patientResponse.name);
-                setTherapistName(therapistResponse.name);
+                // setPatientName(patientResponse.name);
+                // setTherapistName(therapistResponse.name);
+                console.log(patientName);
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -28,10 +32,11 @@ const SuperviserCard = ({patient_id,therapist_id}) => {
 
         fetchNames();
     }, []);
+    console.log(props.patientId)
     return (
         /* From Uiverse.io by ElSombrero2 */ 
         <StyledWrapper>
-            <div className="card">
+            <div className="card" >
                 <div className="content">
                     <div className="back">
                         <div className="back-content" >
@@ -65,7 +70,10 @@ const SuperviserCard = ({patient_id,therapist_id}) => {
                                     </svg>
                                 </div>
                                 <p className="card-footer">
-                                    30 Mins &nbsp; | &nbsp;  August 26, 2024
+                                    {/* 30 Mins &nbsp; | &nbsp;  August 26, 2024 */}
+                                    <Link navigate to={`/detailsSup/${props.patientId}`}>
+                                    <button>hi</button>
+                                    </Link>
                                 </p>
                             </div>
                         </div>

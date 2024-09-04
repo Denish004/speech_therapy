@@ -1,17 +1,21 @@
+
 import SuperviserCard from "../components/CardsSupKD"
 import Navbar from "../components/NavbarAB"
 import PCardSup from "../components/PCardSup"
 import React, { useState, useEffect } from "react";
+import axios from "axios"; // Add axios here
 import { useNavigate } from "react-router-dom";
 import PendingCard from "../components/PendingCardKD"
 import Card from "../components/ProfileSW"
+
+
 
 const Superviser=()=>{
       const [matchResponses, setMatchResponses] = useState([]);
     const navigate=useNavigate()
 
       const handleCard=async(patient_id)=>{
-  
+        console.log(patient_id)
         navigate(`/detailsSup/${patient_id}`)
       };
 
@@ -21,7 +25,7 @@ const Superviser=()=>{
                 // Fetching match data
                 const response = await fetch('http://localhost:8081/api/supervisor/getAll');
                 const matchResponses = await response.json();
-
+                setMatchResponses(matchResponses)
                 console.log(matchResponses);
                 // const { patient_id, therapist_id } = matchResponse.data;
 
@@ -42,9 +46,20 @@ const Superviser=()=>{
         <div>
             <Navbar/>
         <div style={{display:"flex"}}>
-            <div style={{marginLeft:15}}><SuperviserCard/>
-       <SuperviserCard/>
-       <SuperviserCard/></div>
+             <div style={{marginLeft:15}}>
+                {matchResponses.map((matchResponse) => (
+                     <div >
+                        
+                        <SuperviserCard
+                         key={matchResponse._id}
+                            patientId={matchResponse.patientIds[0]}
+                            therapistId={matchResponse.therapistId}
+                        />
+                       </div>
+                    ))}
+             </div>
+       {/* <SuperviserCard/>
+       <SuperviserCard/></div> */}
        <div style={{width:400,margin:30}}><PCardSup/>
        <PendingCard/></div>
        
