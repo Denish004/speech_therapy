@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const patientRoutes = require('./routes/patientRoutesDS');
 const userRoutes =require('./routes/user')
+const supervisorRoutes = require('./routes/supervisorRoutesDS')
 const registerPatient =require('./routes/RegisterPatientSW')
 const registerTherapist =require('./routes/RegisterTherapist')
 const cors = require('cors');
@@ -30,6 +31,7 @@ app.use('/api', patientRoutes);
 app.use("/api/user",userRoutes)
 app.use('/api', registerPatient);
 app.use('/api', registerTherapist);
+app.use('/api', supervisorRoutes );
 const PORT = process.env.PORT || 8080;
 mongoose.connect("mongodb+srv://sih135907:YrAQ5unuFd6vMMuI@cluster0.d9ykcdy.mongodb.net/")
 .then(() => {

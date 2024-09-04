@@ -13,29 +13,21 @@ const patientSchema = new mongoose.Schema({
   budget: Number,
   gender_preference: String,
   cultural_background: String,
-  availability: [{
-    day_of_week: String,
-    start_time: String,
-    end_time: String,
-  }],
+  availability: [String],
 });
 
 const Patient = mongoose.model('patientmodels', patientSchema);
 
 // Therapist model
 const therapistSchema = new mongoose.Schema({
-  patientId:mongoose.Schema.Types.ObjectId,
+  therapistId:mongoose.Schema.Types.ObjectId,
   name: String,
   specializations: [String],
   age_groups: [String],
   therapeutic_approaches: [String],
   languages: [String],
-  location:Number,
-  availability: [{
-    day_of_week: String,
-    start_time: String,
-    end_time: String,
-  }],
+  location:String,
+  availability: [String],
   insurance_accepted: [String],
   session_cost:Number,
   gender: String,
@@ -53,4 +45,17 @@ const matchingResultSchema = new mongoose.Schema({
 const MatchingResult = mongoose.model('MatchingResult', matchingResultSchema);
 
 
-module.exports = { Patient, Therapist, MatchingResult };
+const supervisorSchema = new mongoose.Schema({
+  supervisorId: mongoose.Schema.Types.ObjectId,
+  name: String,
+  gender: String,
+  location: String,
+  experience: Number,
+  email: String,
+  phone: String
+
+});
+
+const Supervisor = mongoose.model('supervisors', supervisorSchema);
+
+module.exports = { Patient, Therapist, MatchingResult, Supervisor };

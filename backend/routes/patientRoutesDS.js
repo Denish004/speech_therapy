@@ -20,7 +20,9 @@ router.get('/patients/:id', async (req, res) => {
 // Fetch all therapists
 router.get('/therapists', async (req, res) => {
   try {
+    console.log("helllllllllllllllooooooo");
     const therapists = await Therapist.find();
+    console.log(therapists);
     res.json(therapists);
   } catch (error) {
     res.status(500).json({ error: 'Error fetching therapists' });
