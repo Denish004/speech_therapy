@@ -13,7 +13,8 @@ const patientSchema = new mongoose.Schema({
   budget: Number,
   gender_preference: String,
   cultural_background: String,
-  availability: [String],
+  availability: [{type :String
+  }],
 });
 
 const Patient = mongoose.model('patientmodels', patientSchema);
@@ -26,8 +27,9 @@ const therapistSchema = new mongoose.Schema({
   age_groups: [String],
   therapeutic_approaches: [String],
   languages: [String],
-  location:String,
-  availability: [String],
+  location:Number,
+  availability: [{String
+  }],
   insurance_accepted: [String],
   session_cost:Number,
   gender: String,

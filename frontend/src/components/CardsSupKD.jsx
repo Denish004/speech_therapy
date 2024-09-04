@@ -1,8 +1,33 @@
 import styled from "styled-components";
-
+import React, { useEffect, useState } from 'react';
+// import styled from 'styled-components';
+import axios from 'axios';
 
 // export default SuperviserCard;
-const SuperviserCard = () => {
+const SuperviserCard = ({patient_id,therapist_id}) => {
+  const [patientName, setPatientName] = useState('');
+    const [therapistName, setTherapistName] = useState('');
+
+    useEffect(() => {
+        const fetchNames = async () => {
+            try {
+                // Fetching match data
+                // const matchResponse = await axios.get('http://localhost:8080/api/match');
+                // const { patient_id, therapist_id } = matchResponse.data;
+
+                // Fetching patient and therapist names
+                const patientResponse = await axios.get(`http://localhost:8080/api/patient/${patient_id}`);
+                const therapistResponse = await axios.get(`http://localhost:8080/api/therapist/${therapist_id}`);
+
+                setPatientName(patientResponse.name);
+                setTherapistName(therapistResponse.name);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+
+        fetchNames();
+    }, []);
     return (
         /* From Uiverse.io by ElSombrero2 */ 
         <StyledWrapper>
@@ -12,10 +37,10 @@ const SuperviserCard = () => {
                         <div className="back-content" >
                             
                             <div><img src="https://cdn-icons-png.flaticon.com/512/2919/2919906.png"/>
-                            <strong style={{fontSize:30}}>Patient</strong></div>
+                            <strong style={{fontSize:30}}>{patientName}</strong></div>
                             
                             <div><img src="https://cdn-icons-png.flaticon.com/512/2919/2919906.png"/>
-                            <strong style={{fontSize:30}}>Therapist</strong></div>
+                            <strong style={{fontSize:30}}>{therapistName}</strong></div>
                         </div>
                     </div>
                     <div className="front">
