@@ -6,6 +6,8 @@ import PendingCard from "../components/PendingCardKD"
 import Card from "../components/ProfileSW"
 
 const Superviser=()=>{
+    
+
     return(
         <div>
             <Navbar/>

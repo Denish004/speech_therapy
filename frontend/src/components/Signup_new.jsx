@@ -112,6 +112,7 @@ const Signup_new = () => {
     </option>
     <option value="therapist">Therapist</option>
     <option value="patient">Patient</option>
+    <option value="supervisor">Supervisor</option>
   </select>
 </div>
 
@@ -140,7 +141,7 @@ const Signup_new = () => {
                    
                    
                    
-                    <button onClick={handleClick} type="submit" class="w-full  px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login  to your account</button>
+                    <button onClick={handleClick} type="submit" class="w-full  px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Sign up to your account</button>
                     <div class="text-sm font-medium text-gray-900 dark:text-white">
                        Already registered <a href='login' class="text-blue-600 hover:underline dark:text-blue-500">Login account</a>
                     </div>
