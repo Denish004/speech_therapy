@@ -39,7 +39,7 @@ const SuperviserCard = ({patient_id,therapist_id}) => {
                             <div><img src="https://cdn-icons-png.flaticon.com/512/2919/2919906.png"/>
                             <strong style={{fontSize:30}}>{patientName}</strong></div>
                             
-                            <div><img src="https://cdn-icons-png.flaticon.com/512/2919/2919906.png"/>
+                            <div><img src="https://cdn-icons-png.flaticon.com/512/2764/2764453.png"/>
                             <strong style={{fontSize:30}}>{therapistName}</strong></div>
                         </div>
                     </div>

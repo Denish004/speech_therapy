@@ -17,7 +17,7 @@ const PendingCard=()=>{
       <div class="text-wrap">
         <p class="text-content">
           <a class="text-link" href="#">Jane Doe</a> invited you to review the
-          <a class="text-link" href="#">therapy</a> session.
+          <a class="text-link" href="#"> therapy</a> session.
         </p>
         <p class="time">2 hours ago</p>
       </div>
@@ -37,7 +37,7 @@ const PendingCard=()=>{
       <div class="text-wrap">
         <p class="text-content">
           <a class="text-link" href="#">Alex Perry</a> invited you to review the
-          <a class="text-link" href="#">therapy</a> session.
+          <a class="text-link" href="#"> therapy</a> session.
         </p>
         <p class="time">2 hours ago</p>
       </div>
@@ -97,11 +97,11 @@ const StyledWrapper = styled.div`
 .container {
   margin-top: 1.25em;
   margin-bottom: 1.375em;
-  margin-left: 1.375em;
+  margin-left: 0.475em;
   margin-right: 2em;
   display: flex;
   flex-direction: row;
-  gap: 0.75em;
+  gap: 0.50em;
 }
 
 .status-ind {

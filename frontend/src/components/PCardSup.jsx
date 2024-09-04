@@ -4222,12 +4222,12 @@ const PCardSup = () => {
         </div>
         <div className="bottom">
           <div className="content">
-            <span className="name">Dr. X</span>
+            <span className="name">Mrs.Seema Reddy</span>
             <span className="about-me">
-              Lorem ipsum dolor sit amet consectetur adipisicinFcls{" "}
+              Senior Supervisor{" "}
             </span>
           </div>
-          <div className="bottom-bottom" style={{marginLeft:'55px'}}>
+          <div className="bottom-bottom" style={{marginLeft:'80px'}}>
             {/* <div className="social-links-container"> 
               <svg
                 xmlns="http://www.w3.org/2000/svg"
