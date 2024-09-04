@@ -52,8 +52,58 @@ import GaugeChartDS from "./ChartsDS/GaugeChartDS";
 const PatientCardDS = () => {
   return (
     <div >
-      <div className="absolute  w-full ">
-    <PatientCardLottie/>
+      <div className="absolute w-full -z-50">
+      <svg   xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 510" preserveAspectRatio="xMidYMid">
+  <defs>
+    <linearGradient id="waveGradient" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#fff0bb"/>
+      <stop offset="0.5" stop-color="#ff8ad8"/>
+      <stop offset="1" stop-color="#ff00ff"/>
+    </linearGradient>
+  </defs>
+  <g transform="rotate(180 640 275.5)">
+    <rect fill="white" height="551" width="1280" y="0" x="0"/>
+    <path id="wave1" fill-opacity="0.7" fill="url(#waveGradient)">
+      <animate 
+        attributeName="d"
+        dur="7s"
+        repeatCount="indefinite"
+        values="
+          M0 551L0 351C213 311 427 271 640 291C853 311 1067 391 1280 431L1280 551Z;
+          M0 551L0 391C213 431 427 471 640 451C853 431 1067 351 1280 311L1280 551Z;
+          M0 551L0 351C213 311 427 271 640 291C853 311 1067 391 1280 431L1280 551Z"
+        calcMode="spline"
+        keySplines="0.5 0 0.5 1; 0.5 0 0.5 1"
+      />
+    </path>
+    <path id="wave2" fill-opacity="0.5" fill="url(#waveGradient)">
+      <animate 
+        attributeName="d"
+        dur="5s"
+        repeatCount="indefinite"
+        values="
+          M0 551L0 401C213 441 427 481 640 461C853 441 1067 361 1280 321L1280 551Z;
+          M0 551L0 441C213 401 427 361 640 381C853 401 1067 481 1280 521L1280 551Z;
+          M0 551L0 401C213 441 427 481 640 461C853 441 1067 361 1280 321L1280 551Z"
+        calcMode="spline"
+        keySplines="0.5 0 0.5 1; 0.5 0 0.5 1"
+      />
+    </path>
+    <path id="wave3" fill-opacity="0.3" fill="url(#waveGradient)">
+      <animate 
+        attributeName="d"
+        dur="3s"
+        repeatCount="indefinite"
+        values="
+          M0 551L0 451C213 491 427 531 640 511C853 491 1067 411 1280 371L1280 551Z;
+          M0 551L0 491C213 451 427 411 640 431C853 451 1067 531 1280 571L1280 551Z;
+          M0 551L0 451C213 491 427 531 640 511C853 491 1067 411 1280 371L1280 551Z"
+        calcMode="spline"
+        keySplines="0.5 0 0.5 1; 0.5 0 0.5 1"
+      />
+    </path>
+  </g>
+</svg>
     </div>
    <div className="flex justify-center py-10" >
     <StyledWrapper className="w-3/4  ">
@@ -98,7 +148,7 @@ const StyledWrapper = styled.div`
   padding: 5px;
   border-radius: 1rem;
   overflow: visible;
-  background: #461299;
+  background: #fff0bb;
   background: var(--background);
   position: relative;
   z-index: 1;

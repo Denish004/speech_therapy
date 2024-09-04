@@ -1,23 +1,40 @@
 import React, { useState, useEffect } from 'react';
+import { useAuthContext } from '../hooks/useAuthContext.js';
+import Loader from './LoaderSW';
+import Navbar from './NavbarAB';
 
-const MatchTherapists = ({ patientId }) => {
+const MatchTherapists = () => {
   const [patient, setPatient] = useState(null);
   const [therapists, setTherapists] = useState([]);
   const [results, setResults] = useState([]);
   const [selectedTherapistId, setSelectedTherapistId] = useState(null);
+  // const {user} = useAuthContext();
+  // const patientId = "66d7f4e9a677a6462e8d479a";
+  const [loading, setLoading] = useState(true);
+
+  const storedUser = localStorage.getItem('user');
+  const user = storedUser ? JSON.parse(storedUser) : null;
+  const patientId = user?._id; // Safely access _id if user exists
+  console.log(user);
+  
+
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         // Fetch patient data
-        const patientResponse = await fetch(`https://speech-therapy.onrender.com/api/patients/${patientId}`);
+        console.log("getting patient");
+        const patientResponse = await fetch(`http://localhost:8080/api/patients/${patientId}`);
         const fetchedPatient = await patientResponse.json();
+        console.log(fetchedPatient);
         setPatient(fetchedPatient);
 
         // Fetch therapists data
-        const therapistsResponse = await fetch('https://speech-therapy.onrender.com/api/therapists');
+        const therapistsResponse = await fetch('http://localhost:8080/api/therapists');
         const fetchedTherapists = await therapistsResponse.json();
         setTherapists(fetchedTherapists);
+        console.log(therapistsResponse);
+        
 
         if (fetchedPatient && fetchedTherapists.length) {
           const matches = findBestTherapists(fetchedPatient, fetchedTherapists);
@@ -40,26 +57,28 @@ const MatchTherapists = ({ patientId }) => {
     if (type === 'patient') {
       return [
         data.age || 0,
-        data.gender_preference === 'Male' ? 1 : 0,
-        data.speech_disorder.length || 0,
+        data.gender_preference === 'Male' ? 1 : data.gender_preference === 'Female' ? -1 : 0,
+        (data.speech_disorder && data.speech_disorder.length) || 0, // Safe check for undefined or null
         data.severity === 'High' ? 2 : data.severity === 'Moderate' ? 1 : 0,
-        data.preferred_languages.length || 0,
-        data.location.zip_code || 0,
-        data.budget.amount || 0
+        (data.preferred_languages && data.preferred_languages.length) || 0, // Safe check for undefined or null
+        data.location?.zip_code || 0, // Safe check for undefined or null
+        data.budget?.amount || 0, // Safe check for undefined or null
+        (data.cultural_background && data.cultural_background.length) || 0 // Safe check for undefined or null
       ];
     } else if (type === 'therapist') {
       return data.map(item => [
-        item.age_groups.length || 0,
-        item.gender === 'Male' ? 1 : 0,
-        item.specializations.length || 0,
-        item.therapeutic_approaches.length || 0,
-        item.languages.length || 0,
-        item.location.zip_code || 0,
-        item.session_cost.amount || 0
+        (item.age_groups && item.age_groups.length) || 0, // Safe check for undefined or null
+        item.gender === 'Male' ? 1 : item.gender === 'Female' ? -1 : 0,
+        (item.specializations && item.specializations.length) || 0, // Safe check for undefined or null
+        (item.therapeutic_approaches && item.therapeutic_approaches.length) || 0, // Safe check for undefined or null
+        (item.languages && item.languages.length) || 0, // Safe check for undefined or null
+        item.location?.zip_code || 0, // Safe check for undefined or null
+        item.session_cost?.amount || 0, // Safe check for undefined or null
+        (item.cultural_background && item.cultural_background.length) || 0 // Safe check for undefined or null
       ]);
     }
   };
-
+  
   const normalizeData = (data) => {
     const means = data[0].map((_, i) => data.map(row => row[i]).reduce((a, b) => a + b, 0) / data.length);
     const stdDevs = data[0].map((_, i) => Math.sqrt(data.map(row => (row[i] - means[i]) ** 2).reduce((a, b) => a + b, 0) / data.length));
@@ -70,15 +89,25 @@ const MatchTherapists = ({ patientId }) => {
     const patientVector = normalizeData([encodeData(patient, 'patient')])[0];
     const therapistVectors = normalizeData(encodeData(therapists, 'therapist'));
 
-    const scores = therapistVectors.map((therapistVector, j) => ({
-      therapistId: therapists[j]._id,
-      score: 1 / (1 + euclideanDistance(patientVector, therapistVector)),
-      ...therapists[j] // Add therapist details to the result
-    }));
+    const scores = therapistVectors.map((therapistVector, j) => {
+      let score = 1 / (1 + euclideanDistance(patientVector, therapistVector));
+      
+      // Add preferences-based scoring
+      const languageMatch = patient.preferred_languages.some(lang => therapists[j].languages.includes(lang));
+      const culturalMatch = patient.cultural_background === therapists[j].cultural_background;
+      const locationProximity = Math.abs(patient.location.zip_code - therapists[j].location.zip_code) <= 50; // Within 50 units of proximity
 
-    console.log('Encoded Patient Vector:', patientVector);
-    console.log('Encoded Therapist Vectors:', therapistVectors);
-    console.log('Scores:', scores);
+      // Adjust score based on additional matches
+      if (languageMatch) score += 0.1; // Give a small boost for language match
+      if (culturalMatch) score += 0.1; // Give a small boost for cultural background match
+      if (locationProximity) score += 0.05; // Give a small boost for location proximity
+
+      return {
+        therapistId: therapists[j]._id,
+        score,
+        ...therapists[j]
+      };
+    });
 
     scores.sort((a, b) => b.score - a.score);
     return scores;
@@ -86,7 +115,7 @@ const MatchTherapists = ({ patientId }) => {
 
   const storeResults = async (patientId, therapistId, score) => {
     try {
-      await fetch(`https://speech-therapy.onrender.com/api/matching-results/${patientId}`, {
+      await fetch(`http:localhost:8080/api/matching-results/${patientId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -111,6 +140,7 @@ const MatchTherapists = ({ patientId }) => {
   }
 
   return (
+    
     <div className="p-4">
       <h1 className="text-2xl font-bold mb-4">Matching Results for Patient {patientId}</h1>
       <table className="min-w-full bg-white border border-gray-300 rounded-lg">
@@ -150,7 +180,12 @@ const MatchTherapists = ({ patientId }) => {
       </table>
       {selectedTherapistId && <div className="mt-4">Selected Therapist ID: {selectedTherapistId}</div>}
     </div>
+
+    
+    
+    
   );
+  
 };
 
 export default MatchTherapists;
