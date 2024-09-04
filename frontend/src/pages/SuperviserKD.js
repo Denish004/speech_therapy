@@ -1,13 +1,16 @@
 import SuperviserCard from "../components/CardsSupKD"
 import Navbar from "../components/NavbarAB"
 import PCardSup from "../components/PCardSup"
-
+import React, { useState, useEffect } from "react";
+import axios from "axios"; // Add axios here
+import { useNavigate } from "react-router-dom";
 import PendingCard from "../components/PendingCardKD"
 import Card from "../components/ProfileSW"
 
 
 
 const Superviser=()=>{
+      const [matchResponses, setMatchResponses] = useState([]);
     const navigate=useNavigate()
 
       const handleCard=async(patient_id)=>{
@@ -44,7 +47,7 @@ const Superviser=()=>{
         <div style={{display:"flex"}}>
              <div style={{marginLeft:15}}>
                 {matchResponses.map((matchResponse) => (
-                     <div onClick={()=>handleCard({patient_id})}>
+                     <div onClick={()=>handleCard(matchResponse.patient_id)}>
                         <SuperviserCard
                             key={matchResponse._id}
                             patientId={matchResponse.patient_id}
