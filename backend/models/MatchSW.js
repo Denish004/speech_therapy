@@ -13,10 +13,7 @@ const patientSchema = new mongoose.Schema({
   budget: Number,
   gender_preference: String,
   cultural_background: String,
-  availability: [{
-    day_of_week: String,
-    start_time: String,
-    end_time: String,
+  availability: [{type :String
   }],
 });
 
@@ -31,10 +28,7 @@ const therapistSchema = new mongoose.Schema({
   therapeutic_approaches: [String],
   languages: [String],
   location:Number,
-  availability: [{
-    day_of_week: String,
-    start_time: String,
-    end_time: String,
+  availability: [{String
   }],
   insurance_accepted: [String],
   session_cost:Number,

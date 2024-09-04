@@ -1,17 +1,15 @@
 const express = require('express');
 const router = express.Router();
-
-const {Patient,Therapist,MatchingResult} = require('../models/MatchSW');
+const { Patient, Therapist, MatchingResult } = require('../models/MatchSW');
 
 // Fetch a specific patient
 router.get('/patients/:id', async (req, res) => {
   try {
-    console.log("1");
-    
-    const patient = await Patient.findById(req.params.id);
-    console.log("11");
+    console.log("Fetching patient");
+    const patient = await Patient.findOne({ patientId: req.params.id });
+    console.log(patient);
     if (!patient) return res.status(404).json({ error: 'Patient not found' });
-    res.json(patient);
+    res.json(patient).status(200);
   } catch (error) {
     res.status(500).json({ error: 'Error fetching patient' });
   }
@@ -27,41 +25,58 @@ router.get('/therapists', async (req, res) => {
   }
 });
 
-
-
-router.post('/matching-results/:patientId', async (req, res) => {
+// Get matching result for a specific patient and therapist
+router.get('/matching-results', async (req, res) => {
   try {
-    const { therapistId, score } = req.body;
-    const patientId = req.params.patientId;
-
-    // Log the incoming data for debugging
-    console.log('Received data:', { therapistId, patientId, score });
-
-    // Validate the result format
-    // if (!therapistId || score === null || isNaN(score)) {
-    //   return res.status(400).json({ error: 'Invalid result format' });
-    // }
-
-    // Convert null or NaN to 0
-    const validScore = score === null || isNaN(score) ? 0 : score;
-
-    // Clear existing results for the patient
-    await MatchingResult.deleteMany({ patientId });
-
-    // Insert the new result
-    await MatchingResult.create({
-      patientId,
-      therapistId,
-      score: validScore // Store the valid score
-    });
-
-    res.status(201).json({ message: 'Result stored successfully' });
+    const { patientId, therapistId } = req.query;
+    const result = await MatchingResult.findOne({ patientIds: patientId, therapistId });
+    res.json(result || null);
   } catch (error) {
-    console.error('Error storing result:', error);
-    res.status(500).json({ error: 'Error storing result' });
+    res.status(500).json({ error: 'Error fetching matching result' });
   }
 });
 
+// Create or update a matching result
+router.post('/matching-results', async (req, res) => {
+  try {
+    const { patientIds, therapistId, score } = req.body;
 
+    // Check if the matching result for this therapist already exists
+    let existingResult = await MatchingResult.findOne({ therapistId });
+
+    if (existingResult) {
+      // Update existing result by adding new patient IDs
+      existingResult.patientIds = [...new Set([...existingResult.patientIds, ...patientIds])]; // Add new patient IDs if they are not already present
+      existingResult.score = score; // Update the score (if needed)
+      const updatedResult = await existingResult.save();
+      res.status(200).json(updatedResult);
+    } else {
+      // Create new matching result
+      const newResult = new MatchingResult({ patientIds, therapistId, score });
+      await newResult.save();
+      res.status(201).json(newResult);
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Error creating or updating matching result' });
+  }
+});
+
+// Update an existing matching result
+router.put('/matching-results/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { patientIds, score } = req.body;
+
+    // Update existing result by adding new patient IDs
+    const updatedResult = await MatchingResult.findByIdAndUpdate(
+      id,
+      { $addToSet: { patientIds }, score },
+      { new: true }
+    );
+    res.json(updatedResult);
+  } catch (error) {
+    res.status(500).json({ error: 'Error updating matching result' });
+  }
+});
 
 module.exports = router;
