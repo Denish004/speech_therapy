@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Outlet, Link } from "react-router-dom";
 
+
 const Card = () => {
   return (
     <div className="mx-10">
