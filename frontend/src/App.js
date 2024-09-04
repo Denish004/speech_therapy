@@ -14,6 +14,7 @@ import Signup_new from "./components/Signup_new.jsx";
 import SignUpSW from "./components/RegisterSW.jsx";
 import Login_new from "./components/Login_new.jsx";
 import { useAuthContext } from "./hooks/useAuthContext.js";
+import ChatBot from "./ChatBot.js";
 
 const App = () => {
   const { user } = useAuthContext();
@@ -40,7 +41,7 @@ const App = () => {
 
           {/* Patient-specific route */}
           <Route path="/patient" element={<ClientDS />} />
-
+          <Route path="/chatbot" element={<ChatBot/>} />
           
 
           {/* Other routes */}
@@ -60,3 +61,4 @@ const App = () => {
 };
 
 export default App;
+
