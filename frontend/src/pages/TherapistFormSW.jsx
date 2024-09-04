@@ -1,12 +1,18 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useParams } from 'react-router-dom';
 
 const TherapistForm = () => {
   const [weeks, setWeeks] = useState(1);
   const [titles, setTitles] = useState({});
   const [startDate, setStartDate] = useState("");
   const [patientId, setPatientId] = useState("");
+  const { id } = useParams();
+  const storedUser = localStorage.getItem('user');
+  const user = storedUser ? JSON.parse(storedUser) : null;
+  const therapistId = user?._id;
   console.log("1")
+
   const handleWeeksChange = (e) => {
     const selectedWeeks = parseInt(e.target.value, 10);
     setWeeks(selectedWeeks);
@@ -30,11 +36,11 @@ const TherapistForm = () => {
     }));
 
     const data = {
-      patientId,
+      patientId:id,
       therapyStartDate: startDate,
       numberOfWeeks: weeks,
       therapyTitles,
-      TherapistId: "66d2e75aac715c9dc885c03f", // replace with therapist from context
+      TherapistId:therapistId, // replace with therapist from context
     };
     console.log("4")
     try {
@@ -76,7 +82,7 @@ console.log(5)
                 placeholder="Patient ID"
                 className="form_style"
                 type="text"
-                value={patientId}
+                value={id}
                 onChange={(e) => setPatientId(e.target.value)}
                 required
               />

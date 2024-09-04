@@ -80,5 +80,45 @@ router.put('/matching-results/:id', async (req, res) => {
     res.status(500).json({ error: 'Error updating matching result' });
   }
 });
+router.get('/therapist/:therapistId/patients', async (req, res) => {
+  try {
+    const therapistId = req.params.therapistId;
+      console.log("pohocha");
+      
+    // Find matching results for the therapist
+    const matchingResults = await MatchingResult.find({ therapistId });
+
+    // Log the raw matching results to see what's being returned
+    console.log("Matching Results:", JSON.stringify(matchingResults, null, 2));
+    
+    // Check if matchingResults is not empty
+    if (matchingResults.length === 0) {
+      console.log("No matching results found for the given therapistId.");
+    } else {
+      // Extract patient IDs safely, considering possible empty or undefined patientIds arrays
+      const patientIds = matchingResults.flatMap(result => {
+        if (Array.isArray(result.patientIds) && result.patientIds.length > 0) {
+          return result.patientIds.map(patientId => patientId);
+        }
+        return []; // Return an empty array if patientIds is not an array or is empty
+      });
+    
+      // Log the extracted patient IDs
+      console.log("Extracted Patient IDs:", patientIds);
+    
+
+    // Fetch all patients based on IDs
+    const patients = await Patient.find({ 
+      patientId: { $in: patientIds } });
+console.log(patients);
+      res.json(patients).status(200);
+    }
+    
+    
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred while fetching patients.' });
+  }
+});
 
 module.exports = router;
