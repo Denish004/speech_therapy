@@ -5,6 +5,7 @@ const patientRoutes = require('./routes/patientRoutesDS');
 const userRoutes =require('./routes/user')
 const registerPatient =require('./routes/RegisterPatientSW')
 const registerTherapist =require('./routes/RegisterTherapist')
+const sessionRoutes=require('./routes/sessionRoutesAB')
 const cors = require('cors');
 
 const app = express();
@@ -30,6 +31,7 @@ app.use('/api', patientRoutes);
 app.use("/api/user",userRoutes)
 app.use('/api', registerPatient);
 app.use('/api', registerTherapist);
+app.use('/api',sessionRoutes)
 const PORT = process.env.PORT || 8080;
 mongoose.connect("mongodb+srv://sih135907:YrAQ5unuFd6vMMuI@cluster0.d9ykcdy.mongodb.net/")
 .then(() => {

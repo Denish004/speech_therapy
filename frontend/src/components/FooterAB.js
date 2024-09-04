@@ -4,7 +4,7 @@ import styled from "styled-components";
 const Footer = () => {
   return (
     <FooterWrapper>
-      <div className="footer-container">
+      <div className="footer-container mt-1">
         <div className="brand">
           <h2>TheraSpeech</h2>
           <p>Making Speech Therapy Accessible</p>
