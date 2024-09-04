@@ -14,6 +14,7 @@ import Signup_new from "./components/Signup_new.jsx";
 import SignUpSW from "./components/RegisterSW.jsx";
 import Login_new from "./components/Login_new.jsx";
 import { useAuthContext } from "./hooks/useAuthContext.js";
+import ChatBot from "./ChatBot.js";
 
 const App = () => {
   const { user } = useAuthContext();
@@ -38,12 +39,9 @@ const App = () => {
           <Route path="/therapist" element={<TherapistSW />} />
           <Route path="/therapistform/:id" element={<TherapistForm />} />
 
-
           {/* Patient-specific route */}
           <Route path="/patient" element={<ClientDS />} />
-
           
-
           {/* Other routes */}
           <Route path="/signup" element={!user ? <Signup_new /> : <Navigate to="/" />} />
           <Route path="/login" element={!user ? <Login_new /> : <Navigate to="/" />} />
@@ -55,6 +53,8 @@ const App = () => {
           <Route path="/match" element={<Matching />} />
           <Route path="/register" element={<SignUpSW/>}/>
         </Routes>
+        {/* ChatBot component positioned on all pages */}
+        <ChatBot />
       </div>
     </Router>
   );

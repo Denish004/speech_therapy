@@ -1,60 +1,52 @@
-import React from 'react';
-import SessionCardDS from './SessionCardDS.js'
-import  { useEffect, useState } from 'react';
-// import styled from 'styled-components';
-// import axios from 'axios';
-const SessionsDS= () => {
-    // Dummy data for static UI
-    const [Sessions, setSessions] = useState([]);
+import React, { useEffect, useState } from 'react';
+import SessionCardDS from './SessionCardDS.js';
 
-    const storedUser = localStorage.getItem('user');
+const SessionsDS = () => {
+  // Initialize sessions as an empty array
+  const [sessions, setSessions] = useState([]);
+
+  const storedUser = localStorage.getItem('user');
   const user = storedUser ? JSON.parse(storedUser) : null;
   const patientId = user?._id;
-    useEffect(() => {
-        const fetchdata = async () => {
-            try {
-                // Fetching match data
-                const response= await fetch(`http://localhost:8080/api/Allsessions/${patientId}`);
-                // const { patient_id, therapist_id } = matchResponse.data;
 
-                // Fetching patient and therapist names
-                const data = response.json();
-                
-              
+  useEffect(() => {
+    const fetchdata = async () => {
+      try {
+        const response = await fetch(`http://localhost:8080/api/Allsessions/${patientId}`);
+        
+        // Ensure response is JSON
+        const data = await response.json();
+        
+        // Check if the data is an array, otherwise initialize as empty array
+        const sessionsArray = Array.isArray(data) ? data : [];
 
-                setSessions(data)
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        };
+        setSessions(sessionsArray);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        // Handle error state if needed
+      }
+    };
 
-        fetchdata();
-    }, [patientId]);
-    // const Sessions = [
-    //     { id: 1, date: '2024-08-24', time: '10:00 AM', status: 'Scheduled' },
-    //     { id: 2, date: '2024-08-26', time: '02:00 PM', status: 'Scheduled' },
-    //     { id: 3, date: '2024-08-20', time: '11:00 AM', status: 'Completed' },
-    // ];
+    fetchdata();
+  }, [patientId]);
 
-
-    // const upcomingAppointments = appointments.filter(app => new Date(app.date) >= new Date());
-
-    return (
-        <div className='ml-3'>
-        {
-            Sessions && Sessions.map((session)=>{
-                return (
-                    <SessionCardDS 
-                    SessionId = {session.id}
-                    SessionDate = {session.date}
-                    SessionTime = {session.time}
-                    SessionStatus = {session.status}/>
-                );
-            })
-        }
-        </div>
-     
-    );
+  return (
+    <div className="ml-3">
+      {sessions.length ? (
+        sessions.map((session) => (
+          <SessionCardDS
+            key={session._id}
+            sessionId={session._id}
+            therapyStartDate={session.therapyStartDate}
+            numberOfWeeks={session.numberOfWeeks}
+            therapyTitles={session.therapyTitles}
+          />
+        ))
+      ) : (
+        <p>No sessions available.</p>
+      )}
+    </div>
+  );
 };
 
 export default SessionsDS;

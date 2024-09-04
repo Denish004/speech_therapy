@@ -1,79 +1,59 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
 
-const SessionCardDS = ({ SessionId, SessionDate, SessionTime ,SessionStatus}) => {
+const SessionCardDS = ({ sessionId, therapyStartDate, numberOfWeeks, therapyTitles }) => {
   return (
-    <StyledWrapper>
-      <div className="card">
-        <div className="flex justify-around text-3xl">
-          <h1>{SessionId}</h1>
-          <h1>{SessionDate}</h1>
-          <h1>{SessionTime}</h1>
-          <h1>{SessionStatus}</h1>
+    <div className="bg-gradient-to-br border-t-8 border-t-indigo-900 from-green-50 via-fuchsia-50 to-purple-50 border border-gray-200 rounded-xl shadow-lg p-6 m-6 transition-transform transform hover:scale-105 hover:from-yellow-50 hover:via-fuchsia-50 hover:to-purple-100 hover:shadow-2xl">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <h3 className="text-2xl font-bold text-purple-700 mb-4">Session ID: {sessionId}</h3>
+          <div className="text-gray-800 space-y-3">
+            <p className="text-lg">
+              <span className="font-semibold text-purple-800">Therapy Start Date:</span>{' '}
+              <span className="font-medium">{new Date(therapyStartDate).toLocaleDateString()}</span>
+            </p>
+            <p className="text-lg">
+              <span className="font-semibold text-purple-800">Number of Weeks:</span>{' '}
+              <span className="font-medium">{numberOfWeeks}</span>
+            </p>
+          </div>
         </div>
-        {/* <button className="card-button">More info</button> */}
+        <div>
+          <h4 className="text-xl font-semibold text-purple-800 mb-3">Therapy Titles</h4>
+          <ul className="space-y-4">
+            {therapyTitles.length > 0 ? (
+              therapyTitles.map((titleObj, index) => (
+                <li
+                  key={index}
+                  className="bg-gradient-to-r from-purple-200 to-blue-200 p-4 rounded-lg shadow-md transform hover:scale-105 hover:bg-purple-300 transition duration-300 ease-in-out"
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="text-lg font-medium text-gray-900">
+                      <span className="font-semibold">Week {titleObj.week}:</span> {titleObj.title}
+                    </div>
+                    {titleObj.progress !== undefined && (
+                      <div className="w-1/3 ml-4">
+                        <div className="w-full bg-gray-300 rounded-full h-4">
+                          <div
+                            className="bg-green-500 h-4 rounded-full"
+                            style={{ width: `${titleObj.progress}%` }}
+                          ></div>
+                        </div>
+                        <span className="text-sm text-green-600 mt-1 block text-right">
+                          {titleObj.progress}% Complete
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                </li>
+              ))
+            ) : (
+              <p className="text-gray-500">No therapy titles available.</p>
+            )}
+          </ul>
+        </div>
       </div>
-    </StyledWrapper>
+    </div>
   );
 };
-
-const StyledWrapper = styled.div`
-  .card {
- width: 95%;
- height: 100px;
- border-radius: 20px;
-  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
- position: relative;
- padding: 1.8rem;
- margin: 10px;
- margin-left:24px;
- border: 2px solid black;
- transition: 0.5s ease-out;
- overflow: visible;
-}
-
-
-
-.card-button {
- transform: translate(-50%, 125%);
- width: 60%;
- border-radius: 1rem;
- border: none;
- background-color: #008bf8;
- color: #fff;
- font-size: 1rem;
- padding: .5rem 1rem;
- position: absolute;
- left: 50%;
- bottom: 0;
- opacity: 0;
- transition: 0.3s ease-out;
-}
-
-.text-body {
- color: rgb(134, 134, 134);
-}
-
-/*Text*/
-.text-title {
- font-size: 1.5em;
- font-weight: bold;
-}
-
-/*Hover*/
-.card:hover {
-
-  
-  transform: scale(1.05);
-
-  border: 4px solid purple;
- box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
-}
-
-.card:hover .card-button {
- transform: translate(-50%, 50%);
- opacity: 1;
-}
-`;
 
 export default SessionCardDS;
