@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const patientRoutes = require('./routes/patientRoutesDS');
 const userRoutes =require('./routes/user')
+const supervisorRoutes = require('./routes/supervisorRoutesDS')
 const registerPatient =require('./routes/RegisterPatientSW')
 const registerTherapist =require('./routes/RegisterTherapist')
 const sessionRoutes=require('./routes/sessionRoutesAB')

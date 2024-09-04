@@ -3,7 +3,7 @@ const router = express.Router();
 const  registerTherapist  = require('../controllers/therapistControllerSW.js');
 
 
-router.post('/therapist', registerTherapist);
+router.post('/therapist/register', registerTherapist);
 
 
 module.exports = router;

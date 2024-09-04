@@ -9,6 +9,7 @@ module.exports = {
       fontFamily:{
         custom :[ "Dancing Script", "cursive"],
       },
+      
   
     },
   },

@@ -5,7 +5,7 @@ import BasicLineChart from "./LineChartDS";
 const Card = () => {
   return (
     <StyledWrapper >
-      <div className="card opacity-100">
+      <div className="card opacity-100 bg-white">
         <BasicLineChart/>
       </div>
     </StyledWrapper>
@@ -15,9 +15,9 @@ const Card = () => {
 const StyledWrapper = styled.div`
   .card {
   box-sizing: border-box;
-  width: 600px;
-  height: 400px;
- 
+  width: 85%;
+  height: 100%;
+  opacity: 100%;
   border: 1px solid white;
   box-shadow: 12px 17px 51px rgba(161, 62, 184, 0.22);
  

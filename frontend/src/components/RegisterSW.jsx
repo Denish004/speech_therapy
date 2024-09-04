@@ -6,23 +6,23 @@ import Signin_lottie from '../lotties/bg1';
 
 const Form = () => {
   const [formType, setFormType] = useState('patient');
-  const [name, setName] = useState('');
+  let [name, setName] = useState('');
   const [age, setAge] = useState('');
   const [speechDisorder, setSpeechDisorder] = useState('');
   const [severity, setSeverity] = useState('');
-  const [preferredLanguages, setPreferredLanguages] = useState('');
+  const [preferredLanguages, setPreferredLanguages] = useState([]);
   const [location, setLocation] = useState('');
   const [insuranceProvider, setInsuranceProvider] = useState('');
   const [budget, setBudget] = useState('');
   const [genderPreference, setGenderPreference] = useState('');
   const [culturalBackground, setCulturalBackground] = useState('');
-  const [availability, setAvailability] = useState('');
+  const [availability, setAvailability] = useState([]);
 
   const [specializations, setSpecializations] = useState('');
   const [ageGroups, setAgeGroups] = useState('');
-  const [therapeuticApproaches, setTherapeuticApproaches] = useState('');
-  const [languages, setLanguages] = useState('');
-  const [insuranceAccepted, setInsuranceAccepted] = useState('');
+  const [therapeuticApproaches, setTherapeuticApproaches] = useState([]);
+  const [languages, setLanguages] = useState([]);
+  const [insuranceAccepted, setInsuranceAccepted] = useState([]);
   const [sessionCost, setSessionCost] = useState('');
   const [gender, setGender] = useState('');
 
@@ -30,34 +30,31 @@ const Form = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log(location);
     name=user.name
     // Prepare the data to be sent based on userType
     const data = formType === 'patient' ? {
-      patientId:user._id,
+      patientId:user.id,
       name,
       age,
       speech_disorder: speechDisorder,
       severity,
-      preferred_languages: preferredLanguages,
+      preferred_languages: preferredLanguages.split(',').map(lang => lang.trim()),
       location,
       insurance_provider: insuranceProvider,
       budget:budget,
       gender_preference: genderPreference,
       cultural_background: culturalBackground,
-      availability: [{
-day_of_week:"Friday",
-start_time:"09:00",
-end_time:"13:00"
-      }],
+      availability: ["Monday", "Sunday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
     } : {
-      patientId:user._id,
+      therapistId:user.id,
       name,
-      specializations,
-      age_groups: ageGroups,
-      therapeutic_approaches: therapeuticApproaches,
-      languages,
+      specializations:specializations.split(',').map(spec => spec.trim()), // Convert to array,
+      age_groups: ageGroups.split(',').map(ageGroup => ageGroup.trim()), // Convert to array,
+      therapeutic_approaches: therapeuticApproaches.split(',').map(approach => approach.trim()), // Convert to array
+      languages:languages.split(',').map(lang => lang.trim()), // Convert to array
       location,
-      availability,
+      availability:["Monday", "Sunday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
       insurance_accepted: insuranceAccepted,
       session_cost: sessionCost,
       gender,
@@ -125,7 +122,7 @@ end_time:"13:00"
                 <input className="input" name="budget" value={budget} onChange={(e) => setBudget(e.target.value)} placeholder="Budget" type="number" required />
                 <input className="input" name="gender_preference" value={genderPreference} onChange={(e) => setGenderPreference(e.target.value)} placeholder="Gender Preference" type="text" required />
                 <input className="input" name="cultural_background" value={culturalBackground} onChange={(e) => setCulturalBackground(e.target.value)} placeholder="Cultural Background" type="text" required />
-                <input className="input" name="availability" value={availability} onChange={(e) => setAvailability(e.target.value)} placeholder="Availability" type="text" required />
+                <input className="input" name="availability" value={availability} onChange={(e) => setAvailability(e.target.value)} placeholder="Availability" type="text"  />
               </>
             ) : (
               <>
@@ -135,7 +132,7 @@ end_time:"13:00"
                 <input className="input" name="therapeutic_approaches" value={therapeuticApproaches} onChange={(e) => setTherapeuticApproaches(e.target.value)} placeholder="Therapeutic Approaches" type="text" required />
                 <input className="input" name="languages" value={languages} onChange={(e) => setLanguages(e.target.value)} placeholder="Languages" type="text" required />
                 <input className="input" name="location" value={location} onChange={(e) => setLocation(e.target.value)} placeholder="Location" type="text" required />
-                <input className="input" name="availability" value={availability} onChange={(e) => setAvailability(e.target.value)} placeholder="Availability" type="text" required />
+                <input className="input" name="availability" value={availability} onChange={(e) => setAvailability(e.target.value)} placeholder="Availability" type="text" />
                 <input className="input" name="insurance_accepted" value={insuranceAccepted} onChange={(e) => setInsuranceAccepted(e.target.value)} placeholder="Insurance Accepted" type="text" required />
                 <input className="input" name="session_cost" value={sessionCost} onChange={(e) => setSessionCost(e.target.value)} placeholder="Session Cost" type="number" required />
                 <input className="input" name="gender" value={gender} onChange={(e) => setGender(e.target.value)} placeholder="Gender" type="text" required />

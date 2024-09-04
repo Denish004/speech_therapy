@@ -12,8 +12,8 @@ function CalendarStyledDS() {
 const StyledWrapper = styled.div`
   .calendar {
   box-sizing: border-box;
-  width: 600px;
-  height: 400px;
+  width: 100%;
+  height: 350px;
  
   border: 1px solid white;
   box-shadow: 12px 17px 51px rgba(161, 62, 184, 0.22);

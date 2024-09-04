@@ -64,14 +64,14 @@ const Dashboard = () => {
 
       <PatientCard />
 
-      <div className="mt-8 flex justify-evenly ">
-        <div>
+      <div className="mt-8 pb-10 bg-orange-50 rounded-t-[60px] border-t-8 border-t-indigo-900  flex justify-evenly ">
+        <div className="p-5 pl-10">
         <h1 className="flex justify-center text-3xl mb-5 font-custom">Your Progress</h1>
         <LineChartCardDS />
         </div>
-        <div>
+        <div className="p-5 pr-10">
         <h1 className="flex justify-center text-3xl mb-5 font-custom">Your Schedule</h1>
-        <CalendarStyledDS />
+        <CalendarStyledDS/>
         </div>
         
       </div>

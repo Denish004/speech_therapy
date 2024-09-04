@@ -10,8 +10,8 @@ const testimonials = [
 const Testimonial = () => {
   return (
     <StyledWrapper>
-      <h2 className="title">What People Are Saying</h2>
-      <div className="testimonials">
+      <h2 className="title m-2">What People Are Saying</h2>
+      <div className="testimonials mb-8">
         {testimonials.map((testimonial, index) => (
           <div key={index} className="card">
             <div className="content">
