@@ -19,13 +19,14 @@ const SessionCardDS = ({ SessionId, SessionDate, SessionTime ,SessionStatus}) =>
 
 const StyledWrapper = styled.div`
   .card {
- width: 100%;
+ width: 95%;
  height: 100px;
  border-radius: 20px;
- background: white;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
  position: relative;
  padding: 1.8rem;
  margin: 10px;
+ margin-left:24px;
  border: 2px solid black;
  transition: 0.5s ease-out;
  overflow: visible;

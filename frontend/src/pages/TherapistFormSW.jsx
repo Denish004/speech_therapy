@@ -11,6 +11,9 @@ const TherapistForm = () => {
   const storedUser = localStorage.getItem('user');
   const user = storedUser ? JSON.parse(storedUser) : null;
   const therapistId = user?._id;
+  const storedUser = localStorage.getItem('user');
+  const user = storedUser ? JSON.parse(storedUser) : null;
+  const therapistId = user?._id;
   console.log("1")
 
   const handleWeeksChange = (e) => {

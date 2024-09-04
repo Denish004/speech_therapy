@@ -29,6 +29,7 @@ const App = () => {
             element={
               role === 'therapist' ? <Navigate to="/therapist" /> 
               : role === 'patient' ? <Navigate to="/patient" /> 
+              : role === 'supervisor' ? <Navigate to="/supervisor"/>
               : <Home />
             } 
           />
@@ -41,13 +42,15 @@ const App = () => {
           {/* Patient-specific route */}
           <Route path="/patient" element={<ClientDS />} />
 
+          
+
           {/* Other routes */}
           <Route path="/signup" element={!user ? <Signup_new /> : <Navigate to="/" />} />
           <Route path="/login" element={!user ? <Login_new /> : <Navigate to="/" />} />
           <Route path="/question" element={<Questionnaire />} />
           <Route path="/theraReview" element={<TheraReview />} />
           <Route path="/supervisor" element={<SuperviserKD />} />
-          <Route path="/detailsSup" element={<DetailsSupKD />} />
+          <Route path="/detailsSup/:id" element={<DetailsSupKD />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/match" element={<Matching />} />
           <Route path="/register" element={<SignUpSW/>}/>

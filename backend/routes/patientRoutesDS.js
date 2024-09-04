@@ -18,7 +18,7 @@ router.get('/patients/:id', async (req, res) => {
 // Fetch all therapists
 router.get('/therapists', async (req, res) => {
   try {
-    console.log("helllllllllllllllooooooo");
+    // console.log("helllllllllllllllooooooo");
     const therapists = await Therapist.find();
     console.log(therapists);
     res.json(therapists);
