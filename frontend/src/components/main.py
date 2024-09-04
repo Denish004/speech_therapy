@@ -13,7 +13,7 @@ app = FastAPI()
 # Handle CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3001"], 
+    allow_origins=["http://localhost:3000"], 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -29,7 +29,7 @@ def load_and_predict(file_path: str) -> float:
         new_sample = pd.DataFrame([features], columns=feature_columns)
 
         
-        model_filename = 'backend/stutter_sep28k_model.joblib'
+        model_filename = 'stutter_sep28k_model.joblib'
         clf = joblib.load(model_filename)
         print(f'Loaded model from {model_filename}')
 
@@ -60,3 +60,5 @@ async def predict(file: UploadFile = File(...)) -> str:
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
+
+# uvicorn main:app --reload --host 0.0.0.0 --port 8000
