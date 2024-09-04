@@ -1,6 +1,6 @@
-
 import React, { useState } from 'react';
 import axios from 'axios';
+import './ChatBot.css';
 
 const ChatBot = () => {
   const [question, setQuestion] = useState('');
@@ -23,26 +23,27 @@ const ChatBot = () => {
   };
 
   return (
-    <div>
-      <h1>Document Q&A</h1>
+    <div className="chatbot-container">
+      <h1 className="chatbot-title">Speech Therapy Chatbot</h1>
       <textarea
         value={question}
         onChange={(e) => setQuestion(e.target.value)}
         placeholder="Enter your question here"
         rows={5}
         cols={50}
+        className="chatbot-textarea"
       />
-      <button onClick={handleQuery} disabled={loading}>
+      <button onClick={handleQuery} disabled={loading} className="chatbot-button">
         {loading ? 'Loading...' : 'Get Answer'}
       </button>
       {response && (
-        <div>
+        <div className="chatbot-response">
           <h2>Answer:</h2>
           <pre>{response}</pre>
         </div>
       )}
       {context.length > 0 && (
-        <div>
+        <div className="chatbot-context">
           <h2>Document Context:</h2>
           {context.map((doc, index) => (
             <div key={index}>

@@ -40,6 +40,7 @@ prompt = ChatPromptTemplate.from_template(
     """
     Answer the questions based on the provided context only.
     Please provide the most accurate response based on the question.
+    Do not use the words Based on the provided context
     <context>
     {context}
     </context>
@@ -76,7 +77,6 @@ def vector_embedding():
     vectors = FAISS.from_documents(final_documents, embeddings)  # Vector OpenAI embeddings
 
 
-# Process the PDF on startup
 vector_embedding()
 
 class QueryRequest(BaseModel):
@@ -90,7 +90,6 @@ async def query(request: QueryRequest):
         raise HTTPException(status_code=500, detail="Vectors not initialized")
 
     try:
-        # Create chains
         document_chain = create_stuff_documents_chain(llm, prompt)
         retriever = vectors.as_retriever()
         retrieval_chain = create_retrieval_chain(retriever, document_chain)
