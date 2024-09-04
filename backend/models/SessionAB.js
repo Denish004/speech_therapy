@@ -22,7 +22,7 @@ const sessionSchema = new mongoose.Schema({
     }
   ], 
   TherapistId: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId, 
     // type: String,
     ref: 'therapists',  // Assuming you have a Therapist model
     required: true
