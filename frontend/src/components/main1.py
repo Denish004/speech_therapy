@@ -40,6 +40,7 @@ prompt = ChatPromptTemplate.from_template(
     """
     Answer the questions based on the provided context only.
     Please provide the most accurate response based on the question.
+    replace words the provided text with 'my knowledge'
     Do not use the words Based on the provided context
     <context>
     {context}

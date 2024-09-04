@@ -39,12 +39,9 @@ const App = () => {
           <Route path="/therapist" element={<TherapistSW />} />
           <Route path="/therapistform/:id" element={<TherapistForm />} />
 
-
           {/* Patient-specific route */}
           <Route path="/patient" element={<ClientDS />} />
-          <Route path="/chatbot" element={<ChatBot/>} />
           
-
           {/* Other routes */}
           <Route path="/signup" element={!user ? <Signup_new /> : <Navigate to="/" />} />
           <Route path="/login" element={!user ? <Login_new /> : <Navigate to="/" />} />
@@ -56,10 +53,11 @@ const App = () => {
           <Route path="/match" element={<Matching />} />
           <Route path="/register" element={<SignUpSW/>}/>
         </Routes>
+        {/* ChatBot component positioned on all pages */}
+        <ChatBot />
       </div>
     </Router>
   );
 };
 
 export default App;
-
