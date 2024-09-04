@@ -36,7 +36,8 @@ const App = () => {
           <Route path="/home" element={<Home/>}/>
           {/* Therapist-specific routes */}
           <Route path="/therapist" element={<TherapistSW />} />
-          <Route path="/therapistform" element={<TherapistForm />} />
+          <Route path="/therapistform/:id" element={<TherapistForm />} />
+
 
           {/* Patient-specific route */}
           <Route path="/patient" element={<ClientDS />} />

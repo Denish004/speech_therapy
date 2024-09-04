@@ -1,14 +1,15 @@
 import React from "react";
 import styled from "styled-components";
-import { Outlet, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-
-const Card = () => {
+const Card = ({ id,name, description, imageUrl }) => {
+  console.log(id);
+  
   return (
     <div className="mx-10">
       <StyledWrapper>
         <div className="parent">
-          <div className="card " >
+          <div className="card">
             <div className="logo">
               <span className="circle circle1" />
               <span className="circle circle2" />
@@ -19,15 +20,14 @@ const Card = () => {
             </div>
             <div className="glass" />
             <div className="content">
-              <span className="title">Bhakti Mule</span>
+              <span className="title">{name}</span>
               <span className="text">
-                Lorem ipsum dolor sit amet.
-                Dolores repellat eaque veritatis quod?
+                {description}
               </span>
             </div>
             <div className="bottom">
               <div className="view-more">
-                <Link to="/patient" className="view-more-button">View more</Link>
+              <Link to={`/therapistform/${id}`} className="view-more-button">View more</Link>
                 <svg
                   className="svg"
                   xmlns="http://www.w3.org/2000/svg"

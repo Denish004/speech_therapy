@@ -1,7 +1,8 @@
 import SuperviserCard from "../components/CardsSupKD"
 import Navbar from "../components/NavbarAB"
 import PCardSup from "../components/PCardSup"
-
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import PendingCard from "../components/PendingCardKD"
 import Card from "../components/ProfileSW"
 
@@ -18,7 +19,7 @@ const Superviser=()=>{
         const fetchNames = async () => {
             try {
                 // Fetching match data
-                const response = await fetch('http://localhost:8080/api/supervisor/getAll');
+                const response = await fetch('http://localhost:8081/api/supervisor/getAll');
                 const matchResponses = await response.json();
 
                 console.log(matchResponses);

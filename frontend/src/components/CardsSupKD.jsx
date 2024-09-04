@@ -16,8 +16,8 @@ const SuperviserCard = ({patient_id,therapist_id}) => {
                 // const { patient_id, therapist_id } = matchResponse.data;
 
                 // Fetching patient and therapist names
-                const patientResponse = await axios.get(`http://localhost:8080/api/patient/${patient_id}`);
-                const therapistResponse = await axios.get(`http://localhost:8080/api/therapist/${therapist_id}`);
+                const patientResponse = await fetch(`http://localhost:8080/api/patient/${patient_id}`);
+                const therapistResponse = await fetch(`http://localhost:8080/api/therapist/${therapist_id}`);
 
                 setPatientName(patientResponse.name);
                 setTherapistName(therapistResponse.name);
