@@ -1,21 +1,43 @@
 import styled from "styled-components";
+import React, { useState, useEffect } from "react";
+import axios from "axios"; // Add axios here
+import { useNavigate } from "react-router-dom";
 
 
-const ReviewSup=()=>{
+const ReviewSup=({patient_id})=>{
+  // const { patient_id } = useParams();
+  const [patientDetails, setPatientDetails] = useState({});
+  
+  useEffect(() => {
+    const fetchPatientDetails = async () => {
+        try {
+            const response = await axios.get(`http://localhost:8080/api/session/${patient_id}`);
+            const details = response.json;
+            setPatientDetails(details);
+        } catch (error) {
+            console.error('Error fetching patient details:', error);
+        }
+    };
+
+    fetchPatientDetails();
+}, [patient_id]);
     return(
-        /* From Uiverse.io by dylanharriscameron */
+      
+
+       
     <StyledWrapper>   
 
         <div style={{margin:40}}><div class="card">
         <div class="bg" style={{display:"flex"}}>
             <div style={{alignContent:"center",marginLeft:90,marginTop:30}}>
                 <div><img src="https://cdn-icons-png.flaticon.com/512/2919/2919906.png" style={{width:150,height:150}}/>
-                            <strong style={{fontSize:30,marginLeft:20}}>Patient</strong></div>
+                            <strong style={{fontSize:30,marginLeft:20}}>{patientDetails.patient_name}</strong></div>
                             
                 <div><img src="https://cdn-icons-png.flaticon.com/512/2919/2919906.png" style={{width:150,height:150}}/>
-                            <strong style={{fontSize:30}}>Therapist</strong></div>
+                            <strong style={{fontSize:30}}>{patientDetails.therapist_name}</strong></div>
             </div>
             <div style={{marginLeft:120,margin:50}}>
+
                 <h1 style={{fontFamily:"sans-serif",fontSize:30,fontWeight:"bold"}}>Session 1</h1>
                 <hr style={{height:28}}/>
                 <div style={{ display: "flex", alignItems: "center" }}>
@@ -25,34 +47,10 @@ const ReviewSup=()=>{
     </label>
     <h1 style={{ margin: "0 0 0 10px", fontSize: "20px" }}>Analysis</h1>
 </div>
-                <div style={{ display: "flex", alignItems: "center" ,marginTop:15}}>
-    <label class="container">
-        <input type="checkbox" checked="checked" />
-        <div class="checkmark"></div>
-    </label>
-    <h1 style={{ margin: "0 0 0 10px", fontSize: "20px" }}>Analysis</h1>
-</div>
+                
                 
             </div>
-            <div style={{marginLeft:120,margin:50}}>
-                <h1 style={{fontFamily:"sans-serif",fontSize:30,fontWeight:"bold"}}>Session 2</h1>
-                <hr style={{height:28}}/>
-                <div style={{ display: "flex", alignItems: "center" }}>
-    <label class="container">
-        <input type="checkbox" checked="checked" />
-        <div class="checkmark"></div>
-    </label>
-    <h1 style={{ margin: "0 0 0 10px", fontSize: "20px" }}>Analysis</h1>
-</div>
-                <div style={{ display: "flex", alignItems: "center" ,marginTop:15}}>
-    <label class="container">
-        <input type="checkbox" checked="checked" />
-        <div class="checkmark"></div>
-    </label>
-    <h1 style={{ margin: "0 0 0 10px", fontSize: "20px" }}>Analysis</h1>
-</div>
-                
-            </div>
+            
                             
 
 

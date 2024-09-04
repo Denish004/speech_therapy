@@ -104,6 +104,10 @@ const Dashboard = () => {
                     <Messaging />
                 </div>
             </div> */}
+       <h1 className="flex justify-center mt-10 text-4xl font-extrabold text-violet-950 drop-shadow-lg">
+  Your Sessions
+</h1>
+
       <div className="bg-white shadow-md rounded-lg p-6 mt-6">
         <SessionsDS />
       </div>
