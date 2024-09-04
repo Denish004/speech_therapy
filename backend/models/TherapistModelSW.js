@@ -14,11 +14,7 @@ const therapistSchema = new mongoose.Schema({
     country: String,
   },
   availability: [
-    {
-      day_of_week: String,
-      start_time: String,
-      end_time: String,
-    },
+   
   ],
   insurance_accepted: [String],
   session_cost: {

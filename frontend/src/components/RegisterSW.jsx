@@ -68,7 +68,7 @@ const Form = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${user?.token}`, // Example for auth token
+      
       },
       body: JSON.stringify(data),
     })
