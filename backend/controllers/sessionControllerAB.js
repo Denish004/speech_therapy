@@ -19,5 +19,33 @@ exports.createSession = async (req, res) => {
     res.status(500).json({ message: 'Server error', error: error.message });
   }
 };
+ // Adjust the path as needed
+
+// Function to get all sessions
+
+
+exports.getSessionsByPatientId = async (req, res) => {
+  try {
+    const { patientId } = req.params;
+
+    // Fetch all sessions for the given patientId from the database
+    const sessions = await Session.find({ patientId }).populate('patientId').populate('TherapistId');
+
+    // Check if any sessions exist for the given patientId
+    if (!sessions || sessions.length === 0) {
+      return res.status(404).json({ message: 'No sessions found for this patient' });
+    }
+
+    // Send the sessions as the response
+    res.status(200).json(sessions);
+  } catch (error) {
+    // Handle errors
+    console.error('Error fetching sessions:', error);
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+};
+
+// You can add this function to your route handlers, for example:
+// router.get('/sessions/patient/:patientId', getSessionsByPatientId);
 
 // Additional functions for retrieving, updating, and deleting sessions can be added here.

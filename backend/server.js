@@ -33,6 +33,7 @@ app.use("/api/user",userRoutes)
 app.use('/api', registerPatient);
 app.use('/api', registerTherapist);
 app.use('/api',sessionRoutes)
+app.use('/api',supervisorRoutes)
 const PORT = process.env.PORT || 8080;
 mongoose.connect("mongodb+srv://sih135907:YrAQ5unuFd6vMMuI@cluster0.d9ykcdy.mongodb.net/")
 .then(() => {

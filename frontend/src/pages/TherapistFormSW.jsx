@@ -6,6 +6,9 @@ const TherapistForm = () => {
   const [titles, setTitles] = useState({});
   const [startDate, setStartDate] = useState("");
   const [patientId, setPatientId] = useState("");
+  const storedUser = localStorage.getItem('user');
+  const user = storedUser ? JSON.parse(storedUser) : null;
+  const therapistId = user?._id;
   console.log("1")
   const handleWeeksChange = (e) => {
     const selectedWeeks = parseInt(e.target.value, 10);

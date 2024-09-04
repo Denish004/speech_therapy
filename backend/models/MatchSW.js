@@ -44,6 +44,8 @@ const matchingResultSchema = new mongoose.Schema({
   score: { type: Number, required: true },
 });
 
+
+
 const MatchingResult = mongoose.model('MatchingResult', matchingResultSchema);
 
 

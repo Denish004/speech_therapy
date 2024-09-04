@@ -29,6 +29,7 @@ const App = () => {
             element={
               role === 'therapist' ? <Navigate to="/therapist" /> 
               : role === 'patient' ? <Navigate to="/patient" /> 
+              : role === 'supervisor' ? <Navigate to="/supervisor"/>
               : <Home />
             } 
           />
@@ -39,6 +40,8 @@ const App = () => {
 
           {/* Patient-specific route */}
           <Route path="/patient" element={<ClientDS />} />
+
+          
 
           {/* Other routes */}
           <Route path="/signup" element={!user ? <Signup_new /> : <Navigate to="/" />} />

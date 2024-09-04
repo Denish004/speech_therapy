@@ -48,8 +48,13 @@ import styled from "styled-components";
 import PatientCardLottie from "../lotties/PatientCardLottieDS";
 import paitentAvatarDS from "../assets/patientAvatarDS.png"
 import GaugeChartDS from "./ChartsDS/GaugeChartDS";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const PatientCardDS = () => {
+  // const {user} = useAuthContext();
+  const storedUser = localStorage.getItem('user');
+  const user = storedUser ? JSON.parse(storedUser) : null;
+  const name = user?.name; 
   return (
     <div >
       <div className="absolute w-full -z-50">
@@ -120,7 +125,7 @@ const PatientCardDS = () => {
             <div>
             <div class="p-5">
                 
-                    <h5 class="mb-2 ml-9 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Welcome client Name</h5>
+                    <h5 class="mb-2 ml-9 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Welcome {name}</h5>
               
                 <GaugeChartDS/>
                 <a href="#" class="inline-flex items-center px-3 py-2 mb-5 ml-20 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
