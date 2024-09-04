@@ -31,8 +31,9 @@ async function fetchPexelsImage(query) {
   return data.photos.length > 0 ? data.photos[0].src.medium : null;
 }
 
-export default function SpeechTherapyCard() {
-  const [query, setQuery] = useState('');
+export default function SpeechTherapyCard({defaultSound}) {
+  const [query, setQuery] = useState(defaultSound || '');
+  // const [query, setQuery] = useState('');
   const [words, setWords] = useState([]);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [image, setImage] = useState(null);
@@ -77,17 +78,21 @@ export default function SpeechTherapyCard() {
       ]);
       const dictData = await dictResponse.json();
       console.log(dictData)
-      setDefinition(dictData[0]?.meanings[0]?.definitions[0]?.definition || 'No definition available.');
-      setExample(dictData[0]?.meanings[0]?.definitions[0]?.example || '');
-      setAudio(dictData[0]?.phonetics[0]?.audio || '');
-      
-      if (pexelsImage) {
-        setImage(pexelsImage);
-        setIsAIImage(false);
-      } else {
-        const prompt = word+" Definition: "+definition;
-        console.log(prompt)
-        await generateAIImage(prompt);
+
+      if(!dictData[0]?.phonetics[0]?.audio){handleNext()}
+      else{
+        setDefinition(dictData[0]?.meanings[0]?.definitions[0]?.definition || 'No definition available.');
+        setExample(dictData[0]?.meanings[0]?.definitions[0]?.example || '');
+        setAudio(dictData[0]?.phonetics[0]?.audio || '');
+        
+        if (pexelsImage) {
+          setImage(pexelsImage);
+          setIsAIImage(false);
+        } else {
+          const imagePrompt = `Generate an image based on the following word and definition. If the word is a feeling, depict a human experiencing that feeling. If the word is an object, generate an image of the object. If the word represents an abstract concept, represent it as text. Word: "${word}", Definition: "${definition}".`;
+          await generateAIImage(imagePrompt);
+        
+        }
       }
     } catch (error) {
       console.error('Error fetching word data:', error);
@@ -130,22 +135,29 @@ export default function SpeechTherapyCard() {
       fetchWordData(words[currentWordIndex]);
     }
   }, [currentWordIndex, words]);
+  useEffect(() => {
+    if (defaultSound) {
+      fetchWords();
+    }
+  }, [defaultSound]);
+
 
   return (
     <div style={{display:"flex",alignContent:"center"}}>
     <div className="speech-therapy-card">
       <div className="card-header">
         <h2 className="card-title">Try pronouncing the words for better understanding...</h2>
-        <div className="search-container">
-          <input
-            type="text"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Enter a sound or letter"
-            disabled={loading}
-            className="input-field"
-          />
-          <button onClick={fetchWords} disabled={loading} className="search-button">
+        {!defaultSound && (
+          <div className="search-container">
+            <input
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Enter a sound or letter"
+              disabled={loading}
+              className="input-field"
+            />
+            <button onClick={fetchWords} disabled={loading} className="search-button">
             {loading ? (
               <span className="loader small"></span>
             ) : (
@@ -154,7 +166,8 @@ export default function SpeechTherapyCard() {
               </svg>
             )}
           </button>
-        </div>
+          </div>
+        )}
       </div>
 
       {error && (
@@ -214,7 +227,7 @@ export default function SpeechTherapyCard() {
                 <div className="image-wrapper">
                   <img src={image} alt="Generated" className="word-image" />
                   {!isAIImage && (
-                    <button className="replace-image-button" onClick={() => generateAIImage(words[currentWordIndex]+" Definition:"+definition)}>
+                    <button className="replace-image-button" onClick={() => generateAIImage( `Generate an image based on the following word and definition. If the word is a feeling, depict a human experiencing that feeling. If the word is an object, generate an image of the object. If the word represents an abstract concept, represent it as text. Word: "${words[currentWordIndex]}", Definition: "${definition}".`)}>
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                       </svg>

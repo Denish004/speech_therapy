@@ -1,46 +1,49 @@
-import React from "react";
-import styled from "styled-components";
-import BasicLineChart from "./LineChartDS";
+  import React from "react";
+  import styled from "styled-components";
+  import BasicLineChart from "./LineChartDS";
 
-const Card = () => {
-  return (
-    <StyledWrapper >
-      <div className="card opacity-100 bg-white">
-        <BasicLineChart/>
-      </div>
-    </StyledWrapper>
-  );
-};
+  const Card = () => {
+    return (
+      <StyledCard>
+        <BasicLineChart />
+      </StyledCard>
+    );
+  };
 
-const StyledWrapper = styled.div`
-  .card {
-  box-sizing: border-box;
-  width: 85%;
-  height: 100%;
-  opacity: 100%;
-  border: 1px solid white;
-  box-shadow: 12px 17px 51px rgba(161, 62, 184, 0.22);
- 
-  border-radius: 17px;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.5s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  user-select: none;
-  font-weight: bolder;
-  color: purple;
-}
+  const StyledCard = styled.div`
+    width: 90%;
+    height: 87%;
+    background-color: #3498db;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    padding: 20px;
+    box-sizing: border-box;
+    margin-left:40px;
+    
+    /* Modern styling */
+    background: linear-gradient(145deg, #f8f9fa, #e2e6ea);
+    border: none;
+    
+    &:hover {
+      box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.2);
+      transform: scale(1.05);
+    }
 
-.card:hover {
-  border: 1px solid purple;
-  transform: scale(1.05);
-}
+    &:active {
+      box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
+      transform: scale(0.98);
+    }
 
-.card:active {
-  transform: scale(0.95) rotateZ(1.7deg);
-}
-`;
+    /* Ensure the content is centered */
+    .MuiLineChart-root {
+      width: 100%;
+      height: 100%;
+    }
+  `;
 
-export default Card;
+  export default Card;
