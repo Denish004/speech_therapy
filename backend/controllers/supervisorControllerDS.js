@@ -6,7 +6,10 @@ const {MatchingResult} = require('../models/MatchSW');
 // get all Cards
 const getAllMatchResults=async(req,res)=>{
     try {
-    const results =await MatchingResult.find({});
+      console.log("hellllloooo");
+    const results =await MatchingResult.find();
+    console.log(results);
+    console.log("hellllloooo 111111111111");
     res.status(200).json(results);
     }
     catch (error) {
