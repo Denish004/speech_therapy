@@ -4,7 +4,7 @@ import './SupervisorDashboard.css';
 
 const SupervisorDashboardPreview = () => {
   return (
-    <div className="bg-[#f7e6f0] py-12 min-h-screen">
+    <div className="bg-[#f7e6f0] mt-10 mb-15">
       <h2 className="text-4xl font-bold text-center text-purple-900 mb-8">
         Supervisor Dashboard Preview
       </h2>
