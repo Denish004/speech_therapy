@@ -54,14 +54,16 @@ console.log(props)
                             <div className="circle" id="right"></div>
                             <div className="circle" id="bottom"></div>
                         </div>
-                        <div className="front-content">
+                        {/* <div className="front-content"> */}
+                        <div className="front-content" style={{ backgroundColor: "#CBC3E3", padding: "20px", borderRadius: "10px" }}> {/* Added padding and border-radius */}
                             {/* <small className="badge">Pasta</small> */}
                             <div className="description">
+                              
                                 <div className="title">
-                                    <p className="title">
+                                    {/* <p className="title"> */}
                                         <strong style={{fontSize:15}}>  The therapist has completed the session and is seeking your review. Please provide feedback to help improve the quality of care and patient progress.
 </strong>
-                                    </p>
+                                    {/* </p> */}
                                     <svg fillRule="nonzero" height="15px" width="15px" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
                                         <g style={{ mixBlendMode: "normal" }} textAnchor="none" fontSize="none" fontWeight="none" fontFamily="none" strokeDashoffset="0" strokeDasharray="" strokeMiterlimit="10" strokeLinejoin="miter" strokeLinecap="butt" strokeWidth="1" stroke="none" fillRule="nonzero" fill="#20c997">
                                             <g transform="scale(8,8)">

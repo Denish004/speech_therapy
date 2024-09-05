@@ -1,7 +1,41 @@
-import React from "react";
+import React, { useEffect,useState } from "react";
 import styled from "styled-components";
 
+
+
+
+
 const Card = () => {
+  
+const storedUser = localStorage.getItem('user');
+const user = storedUser ? JSON.parse(storedUser) : null;
+const therapistId = user?._id;
+  const [therapist, setTherapist] = useState(null);
+
+  useEffect(() => {
+    const fetchTherapist = async () => {
+      if (therapistId) {
+        try {
+          const response = await fetch(`https://localhost:8080/therapists/${therapistId}`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              
+            }
+          });
+          if (!response.ok) {
+            throw new Error('Failed to fetch therapist');
+          }
+          const therapistData = await response.json();
+          setTherapist(therapistData);
+        } catch (error) {
+          console.error('Error fetching therapist:', error);
+        }
+      }
+    };
+
+    fetchTherapist();
+  }, [therapistId]);
   return (
     <StyledWrapper>
       <div className="card">

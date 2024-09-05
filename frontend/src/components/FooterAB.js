@@ -37,18 +37,19 @@ const Footer = () => {
 const FooterWrapper = styled.footer`
   background-color: #2e2b5f;
   color: #f9f8f0;
-  font-family: "Comic Sans MS", "Comic Sans", cursive;
 
   .footer-container {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between; /* Distribute items horizontally */
     align-items: center;
     padding: 2rem;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    max-width: 1200px; /* Optional: To limit the width of the content */
+    margin: 0 auto; /* Center the footer content */
   }
 
   .brand {
-    text-align: center;
+    text-align: left; /* Align text to the left */
 
     h2 {
       font-size: 2rem;
@@ -64,12 +65,12 @@ const FooterWrapper = styled.footer`
 
   .links {
     display: flex;
-    flex-direction: column;
+    gap: 2rem; /* Add space between links */
+    flex-direction: row; /* Align links horizontally */
     align-items: center;
 
     a {
       color: #f9f8f0;
-      margin-bottom: 0.5rem;
       font-size: 1rem;
       transition: color 0.3s ease;
 
@@ -81,12 +82,11 @@ const FooterWrapper = styled.footer`
 
   .social-icons {
     display: flex;
-    justify-content: center;
+    gap: 1rem; /* Add space between social icons */
 
     a {
       color: #f9f8f0;
       font-size: 1.5rem;
-      margin: 0 0.5rem;
       transition: color 0.3s ease;
 
       &:hover {
@@ -107,5 +107,6 @@ const FooterWrapper = styled.footer`
     }
   }
 `;
+
 
 export default Footer;

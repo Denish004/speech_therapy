@@ -15,7 +15,13 @@ const Card = ({ id,name, description, imageUrl }) => {
               <span className="circle circle2" />
               <span className="circle circle3" />
               <span className="circle circle4">
-                <img src="https://img.freepik.com/free-psd/3d-render-avatar-character_23-2150611725.jpg?t=st=1724565270~exp=1724568870~hmac=48da38b5112607d63316d558ff613e0ad095ec33cca7ffefd7286ece5539e420&w=740" alt="Avatar" />
+              <div className="w-24 h-24 rounded-full overflow-hidden">
+              <img
+                src={imageUrl}
+                alt="Avatar"
+                className="w-full h-full object-cover rounded-full"
+              />
+            </div>
               </span>
             </div>
             <div className="glass" />

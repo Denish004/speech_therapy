@@ -1,0 +1,58 @@
+/* SupervisorDashboard.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7e6f0;
+  }
+  
+  h2 {
+    font-size: 2.5rem;
+    color: #5c007a; /* Dark purple */
+  }
+  
+  h3 {
+    font-size: 2rem;
+    color: #5c007a;
+  }
+  
+  p {
+    font-size: 1rem;
+    color: #7b1fa2; /* Purple for text */
+  }
+  
+  .bg-custom-whitish-pink {
+    background-color: #f7e6f0; /* Whitish pink */
+  }
+  
+  .shadow-custom {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); /* Softer shadow */
+  }
+  
+  .max-w-custom {
+    max-width: 80rem;
+  }
+  
+  .grid-custom {
+    display: grid;
+    gap: 2rem;
+  }
+  
+  .card-custom {
+    background-color: #ff4081; /* Dark pink */
+    border-radius: 12px;
+    padding: 20px;
+    color: white;
+  }
+  
+  button.custom-button {
+    background-color: #7b1fa2; /* Purple */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  button.custom-button:hover {
+    background-color: #4a0072; /* Darker purple */
+  }
+  
