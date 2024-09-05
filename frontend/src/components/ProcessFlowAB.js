@@ -22,7 +22,7 @@ const ProcessFlow = () => {
           <div key={index} className={`card ${getCardColor(index)}`}>
             <FontAwesomeIcon icon={step.icon} size="2x" className="icon" />
             {/* <p className="tip">Hover Me</p> */}
-            <h3 className="title">{step.title}</h3>
+            <h3 className="title">{step.title} </h3>
             <p className="description">{step.description}</p>
           </div>
         ))}
@@ -83,10 +83,12 @@ const StyledWrapper = styled.div`
     font-size: 1.2em;
     font-weight: 700;
     margin: 10px 0;
+    color: white;
   }
 
   .card .description {
     font-size: 0.9em;
+    color: white;
   }
 
   .card.red {
