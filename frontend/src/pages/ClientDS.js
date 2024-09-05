@@ -8,6 +8,9 @@ import StutterAnalysis from "../components/StutterAnalysis";
 import UserExercise from "../components/UserExercise";
 
 const Dashboard = () => {
+  const storedUser = localStorage.getItem('user');
+  const user = storedUser ? JSON.parse(storedUser) : null;
+  const therapistId = user?._id;
   return (
     <div>
       <Navbar />
@@ -19,10 +22,12 @@ const Dashboard = () => {
             <h1 className="flex justify-center text-3xl mb-5 font-custom">Your Progress</h1>
             <LineChartCardDS />
           </div>
-          <div className="p-5 w-1/2">
+          {user && user.role == "patient" ?( <div className="p-5 w-1/2">
             <h1 className="flex justify-center text-3xl mb-5 font-custom">User Exercise</h1>
-            <UserExercise />
-          </div>
+            <UserExercise /> 
+          </div>):(
+            <UserExercise /> 
+          )}
         </div>
 
         <div className="flex justify-evenly mt-8">
