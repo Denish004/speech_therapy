@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuthContext } from '../hooks/useAuthContext.js';
 import Loader from './LoaderSW';
 import Navbar from './NavbarAB';
+import { useNavigate } from 'react-router-dom';
 
 const MatchTherapists = () => {
   const [patient, setPatient] = useState(null);
@@ -13,7 +14,7 @@ const MatchTherapists = () => {
   const storedUser = localStorage.getItem('user');
   const user = storedUser ? JSON.parse(storedUser) : null;
   const patientId = user?.id; // Safely access _id if user exists
-
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -158,6 +159,7 @@ const MatchTherapists = () => {
   const handleClick = (therapistId, score) => {
     setSelectedTherapistId(therapistId);
     storeResults(patientId, therapistId, score);
+    navigate('/patient')
   };
 
   if (loading) {

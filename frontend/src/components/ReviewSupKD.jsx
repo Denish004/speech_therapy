@@ -121,11 +121,11 @@ const ReviewSup = () => {
                         <div style={{ alignContent: "center", marginLeft: 90, marginTop: 30, alignItems:"center",justifyContent:"center" }}>
                             <div>
                                 <img src="https://cdn-icons-png.flaticon.com/512/2919/2919906.png" style={{ width: 150, height: 150 }} />
-                                <strong style={{ fontSize: 30, marginLeft: 30 }}>{patientDetails.patientName || "Unknown Patient"}</strong>
+                                <strong style={{ fontSize: 30, marginLeft: 30, textAlign:"center" }}>{patientDetails.patientName || "Unknown Patient"}</strong>
                             </div>
                             <div style={{alignContent:"center"}}>
                                 <img src="https://cdn-icons-png.flaticon.com/512/2764/2764453.png" style={{ width: 150, height: 150 }} />
-                                <strong style={{ fontSize: 30, marginLeft:30 }}>{patientDetails.therapistName || "Unknown Therapist"}</strong>
+                                <strong style={{ fontSize: 30, marginLeft:30, textAlign:"center" }}>{patientDetails.therapistName || "Unknown Therapist"}</strong>
                             </div>
                         </div>
                         {patientDetails.therapyTitles && patientDetails.therapyTitles.map((title, index) => (

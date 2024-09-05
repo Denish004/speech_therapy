@@ -30,7 +30,8 @@ const Hero = () => {
         </p>
 
       </div>
-        <Button2 />
+      <a href="/login"><Button2 /></a>
+        
     </div>
     </div>
     
