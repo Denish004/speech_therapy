@@ -21,10 +21,10 @@ const StyledWrapper = styled.div`
     max-width: 300px; /* Limits the maximum width */
     height: auto; /* Allows height to adjust based on content */
     border-radius: 20px;
-    background: #f4e3e6; /* Light gold shade */
+    background: #8e24aa; /* Purple card background */
     position: relative;
     padding: 1.8rem;
-    border: 2px solid #6a1b9a; /* Dark purple border */
+    border: 2px solid #d81b60; /* Dark pink border */
     transition: 0.5s ease-out;
     overflow: visible;
     box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25); /* Added shadow for better visibility */
@@ -34,7 +34,7 @@ const StyledWrapper = styled.div`
   }
 
   .card-details {
-    color: #4a148c; /* Dark purple text */
+    color: #fce4ec; /* Whitish pink text */
     gap: 0.5em;
     display: flex;
     flex-direction: column;
@@ -45,8 +45,8 @@ const StyledWrapper = styled.div`
     width: 100%; /* Button fills the width of the card */
     border-radius: 1rem;
     border: none;
-    background-color: #ff9800; /* Orange color */
-    color: #fff;
+    background-color: #f8bbd0; /* Dark pink button */
+    color: #d81b60;
     font-size: 1rem;
     padding: 0.5rem 1rem;
     position: absolute;
@@ -57,18 +57,18 @@ const StyledWrapper = styled.div`
   }
 
   .text-body {
-    color: rgb(134, 134, 134);
+    color: #f8bbd0; /* Lighter pink for body text */
     font-size: 1rem;
   }
 
   .text-title {
     font-size: 1.5em;
     font-weight: bold;
-    color: #6a1b9a; /* Dark purple for title */
+    color: #fce4ec; /* Whitish pink for title */
   }
 
   .card:hover {
-    border-color: #ff9800; /* Orange color */
+    border-color: #d81b60; /* Dark pink on hover */
   }
 
   .card:hover .card-button {
