@@ -5,38 +5,24 @@ import styled from "styled-components";
 
 
 
-const Card = () => {
+const Card = ({name}) => {
   
 const storedUser = localStorage.getItem('user');
 const user = storedUser ? JSON.parse(storedUser) : null;
-const therapistId = user?._id;
-  const [therapist, setTherapist] = useState(null);
+const therapistId = user?._id||user.id||null;
+  const [therapist, setTherapist] = useState([]);
+  // const[name,setName]=useState('X');
 
-  useEffect(() => {
-    const fetchTherapist = async () => {
-      if (therapistId) {
-        try {
-          const response = await fetch(`https://localhost:8080/therapists/${therapistId}`, {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-              
-            }
-          });
-          if (!response.ok) {
-            throw new Error('Failed to fetch therapist');
-          }
-          const therapistData = await response.json();
-          setTherapist(therapistData);
-        } catch (error) {
-          console.error('Error fetching therapist:', error);
-        }
-      }
-    };
-
-    fetchTherapist();
-  }, [therapistId]);
+  // useEffect(() => {
+    
+  //   fetchTherapist();
+  // }, [therapistId]);
+  // console.log(therapist.name);
+  console.log(name);
+  
   return (
+    <div>
+      {therapist ? (
     <StyledWrapper>
       <div className="card">
         <button className="mail">
@@ -4256,9 +4242,9 @@ const therapistId = user?._id;
         </div>
         <div className="bottom">
           <div className="content">
-            <span className="name">Dr. X</span>
+            <span className="name">Dr. Aarti Deshmukh</span>
             <span className="about-me">
-              Lorem ipsum dolor sit amet consectetur adipisicinFcls{" "}
+            Method:Trauma Therapy,AgeGroup:Adult,
             </span>
           </div>
           <div className="bottom-bottom" style={{marginLeft:'55px'}}>
@@ -4288,7 +4274,11 @@ const therapistId = user?._id;
           </div>
         </div>
       </div>
-    </StyledWrapper>
+    </StyledWrapper>): (
+        <p>Loading...</p>
+      )}
+    
+      </div>
   );
 };
 
