@@ -59,7 +59,8 @@ console.log(props)
                             <div className="description">
                                 <div className="title">
                                     <p className="title">
-                                        <strong style={{fontSize:15}}>Alex has made significant strides in articulating /s/ and /r/ sounds, reducing errors to 20% in structured tasks. His sentence structure is improving, with fewer grammatical mistakes. He is also more confident in spontaneous speech, participating actively in conversations. Continued practice on articulation and sentence complexity is recommended to maintain progress.</strong>
+                                        <strong style={{fontSize:15}}>  The therapist has completed the session and is seeking your review. Please provide feedback to help improve the quality of care and patient progress.
+</strong>
                                     </p>
                                     <svg fillRule="nonzero" height="15px" width="15px" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
                                         <g style={{ mixBlendMode: "normal" }} textAnchor="none" fontSize="none" fontWeight="none" fontFamily="none" strokeDashoffset="0" strokeDasharray="" strokeMiterlimit="10" strokeLinejoin="miter" strokeLinecap="butt" strokeWidth="1" stroke="none" fillRule="nonzero" fill="#20c997">
@@ -69,13 +70,13 @@ console.log(props)
                                         </g>
                                     </svg>
                                 </div>
+                            </div>
                                 <p className="card-footer">
                                     {/* 30 Mins &nbsp; | &nbsp;  August 26, 2024 */}
                                     <Link navigate to={`/detailsSup/${props.patientId}`}>
-                                    <button>hi</button>
+                                    <button className="see-more-button">See More</button>
                                     </Link>
                                 </p>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -257,6 +258,23 @@ const StyledWrapper = styled.div`
   height: 30px;
   animation-delay: -1800ms;
 }
+
+.see-more-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #6a5acd;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .see-more-button:hover {
+    background-color: #483d8b;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+  }
 
 @keyframes floating {
   0% {
