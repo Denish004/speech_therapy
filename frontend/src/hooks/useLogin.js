@@ -11,7 +11,7 @@ export const useLogin = () => {
     setError(null);
     
     try {
-      const response = await fetch('http://localhost:8081/api/user/login1', {
+      const response = await fetch('http://localhost:8080/api/user/login1', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
@@ -31,7 +31,7 @@ export const useLogin = () => {
         console.log("6");
         navigate('/patient'); // Redirect to the patient page
       }
-      else if(json.role === 'therapist'){
+      else if(json.role === 'supervisor'){
         navigate('/supervisor');
       }
       // Save the user to local storage

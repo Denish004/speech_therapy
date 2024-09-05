@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useAuthContext } from '../hooks/useAuthContext'; // Adjust the path as necessary
 import styled from 'styled-components';
 import Signin_lottie from '../lotties/bg1';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 
 const Form = () => {
@@ -25,15 +26,18 @@ const Form = () => {
   const [insuranceAccepted, setInsuranceAccepted] = useState([]);
   const [sessionCost, setSessionCost] = useState('');
   const [gender, setGender] = useState('');
-
-  const { user } = useAuthContext(); // Access user from context
-
+  const navigate = useNavigate();
+  // const { user } = useAuthContext(); // Access user from context
+  const storedUser = localStorage.getItem('user');
+  const user = storedUser ? JSON.parse(storedUser) : null;
+  // const therapistId = user?._id;
+  // const therapistId = user?._id;
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(location);
     name=user.name
     // Prepare the data to be sent based on userType
-    const data = formType === 'patient' ? {
+    const data = user.role === 'patient' ? {
       patientId:user.id,
       name,
       age,
@@ -75,6 +79,12 @@ const Form = () => {
       .then(response => response.json())
       .then(data => {
         console.log('Success:', data);
+        if(user && user.role ==="patient"){
+          navigate('/match')
+        }
+        else{
+          navigate('/therapist')
+        }
         // Handle success, e.g., redirect or show a success message
       })
       .catch((error) => {
@@ -92,25 +102,13 @@ const Form = () => {
       <StyledWrapper>
         <form className="form" onSubmit={handleSubmit}>
           <div className="title">
-            {formType === 'patient' ? 'Patient Registration' : 'Therapist Registration'}
+            {user.role=== 'patient' ? 'Patient Registration' : 'Therapist Registration'}
           </div>
 
-          <div className="toggle-container">
-            <label className="switch">
-              <input
-                type="checkbox"
-                className="toggle"
-                checked={formType === 'therapist'}
-                onChange={() => setFormType(formType === 'patient' ? 'therapist' : 'patient')}
-              />
-              <span className="slider" style={{ marginRight: '18px' }}></span>
-              <span className="label" style={{ paddingRight: '137px' }}>Patient</span>
-              <span className="label pl-5">Therapist</span>
-            </label>
-          </div>
+  
 
           <div className="form-fields">
-            {formType === 'patient' ? (
+            {user && user.role === 'patient' ? (
               <>
                 <input className="input" name="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" type="text" required />
                 <input className="input" name="age" value={age} onChange={(e) => setAge(e.target.value)} placeholder="Age" type="number" required />

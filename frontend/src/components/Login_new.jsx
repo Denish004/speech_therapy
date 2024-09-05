@@ -6,7 +6,7 @@ import Lottie1 from '../lotties/Lottie1'
 
 
 const Login_new = () => {
-  const {login, error, isLoading} = useLogin()
+  const {login, error, isLoading} = useLogin();
    const [email,setEmail]=useState("");
    const [password,setPassword]=useState("");
 
