@@ -114,10 +114,10 @@ function StutterAnalysis() {
       {values.v1 !== null && (
         <div className="result">
           <h2>Result:</h2>
-          <p>Prolongation: {values.v2 !== null ? (values.v2 * 100 - 40).toFixed(2) : 'N/A'} %</p>
-          <p>Block: {values.v3 !== null ? (values.v3 * 100 - 30).toFixed(2) : 'N/A'} %</p>
-          <p>Sound Repetition: {values.v4 !== null ? (values.v4 * 100 * 1.4).toFixed(2) : 'N/A'} %</p>
-          <p>Word Repetition: {values.v5 !== null ? (values.v5 * 100 / 2).toFixed(2) : 'N/A'} %</p>
+          <p>Prolongation: {values.v2 !== null ? (values.v2 * 100 ).toFixed(2) : 'N/A'} % (Should be below 50%)</p>
+          <p>Block: {values.v3 !== null ? (values.v3 * 100 ).toFixed(2) : 'N/A'} % (Should be below 50%)</p>
+          <p>Sound Repetition: {values.v4 !== null ? (values.v4 * 100 ).toFixed(2) : 'N/A'} % ((Should be below 20%))</p>
+          <p>Word Repetition: {values.v5 !== null ? (values.v5 * 100 ).toFixed(2) : 'N/A'} % ((Should be below 20%))</p>
         </div>
       )}
     </div>

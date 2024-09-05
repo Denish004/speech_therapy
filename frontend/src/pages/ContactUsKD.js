@@ -113,7 +113,8 @@ export default function Contact() {
                 <button
                   type="submit"
                   value='Send'
-                  class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  class="text-white bg-purple-800 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-pink-400 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-pink-700 dark:hover:bg-purple-700 dark:focus:ring-pink-500"
+
                 >
                   Submit
                 </button>

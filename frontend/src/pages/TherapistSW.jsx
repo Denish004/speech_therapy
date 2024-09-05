@@ -20,12 +20,40 @@ const imageUrls = [
 const App = () => {
   const [loading, setLoading] = useState(true);
   const [patients, setPatients] = useState([]);
+  const [therapist, setTherapist] = useState([]);
   const storedUser = localStorage.getItem('user');
   const user = storedUser ? JSON.parse(storedUser) : null;
   const therapistId = user ? (user._id ? user._id : user.id) : null;
 
 
   useEffect(() => {
+    const fetchTherapist = async () => {
+      console.log("yaha pe hu");
+      
+      if (therapistId) {
+        try {
+          const response = await fetch(`http://localhost:8080/api/therapistsw/${therapistId}`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            }
+          });
+          if (!response.ok) {
+            throw new Error('Failed to fetch therapist');
+          }
+          const therapistData = await response.json();
+          setTherapist(therapistData);
+          // setName(therapistData.name)
+          // console.log();
+          
+          console.log("dekh bhai",therapistData);
+          
+          
+        } catch (error) {
+          console.error('Error fetching therapist:', error);
+        }
+      }
+    };
     const fetchPatients = async () => {
       try {
         const response = await fetch(`http://localhost:8080/api/therapist/${therapistId}/patients`);
@@ -37,14 +65,17 @@ const App = () => {
         setLoading(false);
       }
     };
+    
+
 
     fetchPatients();
+    fetchTherapist();
   }, [therapistId]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 1000);
+    }, 5000);
 
     return () => clearTimeout(timer); 
   }, []);
@@ -72,7 +103,14 @@ const App = () => {
             <div className='lg:w-1/4 w-full flex flex-col items-center lg:items-start p-6'>
               <div className='flex flex-col justify-between w-full space-y-6'>
                 <div className='lg:mt-6 lg:ml-10'>
-                  <Profile className='bg-white rounded-xl shadow-lg p-5 border border-[#d8b4e2]' />
+                {therapist ? (
+        <Profile
+          name={therapist.name} // Pass therapist's name to Profile component
+          className='bg-white rounded-xl shadow-lg p-5 border border-[#d8b4e2]'
+        />
+      ) : (
+        <p>Loading...</p> // Show a loading message until therapist data is available
+      )}
                 </div>
                 <div className='mt-10 lg:ml-12 w-full'>
                   <span className='font-bold ml-14 text-lg text-[#6b21a8]'>Reschedule Requests</span>
