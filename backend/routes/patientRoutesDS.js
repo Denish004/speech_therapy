@@ -26,6 +26,22 @@ router.get('/therapists', async (req, res) => {
     res.status(500).json({ error: 'Error fetching therapists' });
   }
 });
+router.get('/therapistsw/:id', async (req, res) => {
+  try {
+    const therapistId = req.params.id;
+    console.log(therapistId);
+    
+    const therapist = await Therapist.find({ therapistId });
+
+    if (!therapist) {
+      return res.status(404).json({ error: 'Therapist not found' });
+    }
+
+    res.json(therapist);
+  } catch (error) {
+    res.status(500).json({ error: 'Error fetching therapist' });
+  }
+});
 
 // Get matching result for a specific patient and therapist
 router.get('/matching-results', async (req, res) => {
