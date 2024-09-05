@@ -39,7 +39,7 @@ const appointments = {
   "2024-09-01": ["Consultation with Dr. White"],
 };
 
-export function Calendar() {
+export function Calendar({img}) {
   const [ref, bounds] = useMeasure();
   const today = startOfToday();
   const [currentMonth, setCurrentMonth] = useState(format(today, "MMyyyy"));

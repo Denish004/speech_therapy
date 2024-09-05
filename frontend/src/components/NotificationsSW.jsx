@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const NotificationsSW = () => {
+const NotificationsSW = ({message}) => {
   const [isVisible, setIsVisible] = useState(true);
 
   const handleClose = () => {
@@ -26,7 +26,7 @@ const NotificationsSW = () => {
           </svg>
         </div>
         <div className="px-4 py-6 bg-white rounded-r-lg flex justify-between items-center w-full border border-l-transparent border-gray-200">
-          <div>Success alert</div>
+          <div>{message}</div>
           <button onClick={handleClose}>
             {/* Close Notification Icon */}
             <svg
