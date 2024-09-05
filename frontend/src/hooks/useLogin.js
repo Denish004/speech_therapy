@@ -31,7 +31,7 @@ export const useLogin = () => {
         console.log("6");
         navigate('/patient'); // Redirect to the patient page
       }
-      else if(json.role === 'therapist'){
+      else if(json.role === 'supervisor'){
         navigate('/supervisor');
       }
       // Save the user to local storage

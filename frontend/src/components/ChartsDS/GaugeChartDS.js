@@ -10,7 +10,7 @@ const GaugeChartDS = () => {
       <GaugeChart
         id="gauge-chart3"
         nrOfLevels={3}
-        colors={["green", "orange", "red"]}
+        colors={["red", "orange", "green"]}
         arcWidth={0.3}
         percent={0.80}
         textColor={'dark-gray'}
