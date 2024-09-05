@@ -5,7 +5,7 @@ const SessionCardDS = ({ sessionId, therapyStartDate, numberOfWeeks, therapyTitl
     <div className="bg-gradient-to-br border-t-8 border-t-indigo-900 from-green-50 via-fuchsia-50 to-purple-50 border border-gray-200 rounded-xl shadow-lg p-6 m-6 transition-transform transform hover:scale-105 hover:from-yellow-50 hover:via-fuchsia-50 hover:to-purple-100 hover:shadow-2xl">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <h3 className="text-2xl font-bold text-purple-700 mb-4">Session ID: {sessionId}</h3>
+          {/* <h3 className="text-2xl font-bold text-purple-700 mb-4">Session ID: x{sessionId}</h3> */}
           <div className="text-gray-800 space-y-3">
             <p className="text-lg">
               <span className="font-semibold text-purple-800">Therapy Start Date:</span>{' '}
