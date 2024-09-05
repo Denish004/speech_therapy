@@ -22,7 +22,8 @@ const App = () => {
   const [patients, setPatients] = useState([]);
   const storedUser = localStorage.getItem('user');
   const user = storedUser ? JSON.parse(storedUser) : null;
-  const therapistId = user?._id;
+  const therapistId = user ? (user._id ? user._id : user.id) : null;
+
 
   useEffect(() => {
     const fetchPatients = async () => {
