@@ -1,3 +1,4 @@
+import Footer from "../components/FooterAB";
 import Navbar from "../components/NavbarAB"
 import ReviewInput from "../components/ReviewInput"
 import ReviewSup from "../components/ReviewSupKD"
@@ -10,9 +11,13 @@ const DetailsSupKD=()=>{
     return(
         <div>
             <Navbar/>
-            <div style={{marginBottom:85}}><ReviewSup 
+            <div style={{display:"flex",justifyContent:"center"}}><div>
+                <div style={{marginBottom:85}}><ReviewSup 
             patient_id={patient_id}/></div>
             <div><ReviewInput /></div>
+            </div></div>
+            <Footer/>
+            
             
         </div>
     )

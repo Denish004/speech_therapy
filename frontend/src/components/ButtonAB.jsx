@@ -7,8 +7,8 @@ const Button = () => {
           <a href="/login" >
       <div className="scene">
         <div className="cube">
-          <span className="side top">Learn More</span>
-          <span className="side front">Join Now</span>
+          <span className="side top">Sign Up</span>
+          <span className="side front">Login</span>
         </div>
       </div>
           </a>
@@ -51,16 +51,16 @@ const StyledWrapper = styled.div`
 }
 
 .top {
- background: wheat;
- color: #222229;
+ background: #9d27b0;
+ color: white;
  transform: rotateX(90deg) translate3d(0, 0, 2em);
- box-shadow: inset 0 0 0 5px #fff;
+ box-shadow: inset 0 0 0 5px #f5d0fe;
 }
 
 .front {
  background: #222229;
  color: #fff;
- box-shadow: inset 0 0 0 5px #fff;
+ box-shadow: inset 0 0 0 5px #f5d0fe;
  transform: translate3d(0, 0, 2em);
 }
 `;

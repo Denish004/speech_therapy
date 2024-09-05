@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import ContactLottie from '../lotties/contactbg';
 import Navbar from '../components/NavbarAB';
+import Footer from '../components/FooterAB';
 // import NavbarHome from '../Components/NavbarHome';
 
 export default function Contact() {
@@ -127,6 +128,7 @@ export default function Contact() {
       
 
     </div>
+    <Footer/>
     </>
   );
 }

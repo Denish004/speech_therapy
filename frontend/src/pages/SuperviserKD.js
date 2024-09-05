@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import PendingCard from "../components/PendingCardKD";
 import axios from "axios"; // Add axios here
+import Footer from "../components/FooterAB";
 
 const Superviser = () => {
     const [matchResponses, setMatchResponses] = useState([]);
@@ -53,6 +54,7 @@ const Superviser = () => {
                     <PendingCard />
                 </div>
             </div>
+            <Footer/>
         </div>
     );
     

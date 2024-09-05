@@ -19,11 +19,11 @@ export default function BasicLineChart() {
       margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
     >
       <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="week" label={{ value: 'Weeks', position: 'insideBottom', offset: -7 }} />
+      <XAxis dataKey="week" label={{ value: 'Weeks', position: 'insideBottom', offset: -7,dy:10 }} />
       <YAxis label={{ value: 'Scores', angle: -90, position: 'insideLeft' }} />
       <Tooltip />
       <Legend />
-      <Line type="monotone" dataKey="score" stroke="#4CAF50" dot={{ r: 5 }} />
+      <Line type="monotone" dataKey="score" stroke="#4CAF52" dot={{ r: 5, dy:25 }} />
     </LineChart>
   );
 }
