@@ -95,8 +95,8 @@ function StutterAnalysis() {
 
     <div style={{display:"flex",justifyContent:"center"}}>
     <div className="App">
-      <h1>Test Your Speech Progress</h1>
-      <h3>Know how better you are speaking stastically with the help of AI</h3>
+      <h2>Test Your Speech Progress</h2>
+      <h4>Know how better you are speaking stastically with the help of AI</h4>
       <div className="button-group">
         <button className="record-button" onClick={recording ? stopRecording : startRecording}>
           {recording ? 'Stop Recording' : 'Start Recording'}
@@ -108,7 +108,7 @@ function StutterAnalysis() {
       <button className="generate-paragraph" onClick={generateRandomParagraph}>Generate New Paragraph</button>
       {para && (
         <div className="paragraph">
-          <h3>{para}</h3>
+          {para}
         </div>
       )}
       {values.v1 !== null && (
