@@ -25,25 +25,25 @@ exports.createSession = async (req, res) => {
 
 
 exports.getSessionsByPatientId = async (req, res) => {
-  // Assuming you have a MongoDB model
-// const fetchPatientDetails = async (patientId) => {
-    try {
-        const patientData = await PatientModel.findById(patientId).exec();
-        
-        // Convert therapyTitles to the correct format
-        const formattedTherapyTitles = patientData.therapyTitles.map(item => ({
-            week: Number(item.week),
-            title: String(item.title)
-        }));
+  try {
+    console.log(req.params);
+    const  patientId  = req.params.id;
+    console.log(patientId)
+    // Fetch all sessions for the given patientId from the database
+    const sessions = await Session.find({ patientId });
+    
+    // Check if any sessions exist for the given patientId
+    if (!sessions || sessions.length === 0) {
+      return res.status(404).json({ message: 'No sessions found for this patient' });
+    }
 
-        return {
-            ...patientData.toObject(),
-            therapyTitles: formattedTherapyTitles
-        };
-    } catch (error) {
-        console.error('Error fetching patient details:', error);
-        throw error;
-    // }
+    // Send the sessions as the response
+    res.status(200).json(sessions);
+  } catch (error) {
+    // Handle errors
+    console.error('Error fetching sessions:', error);
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
 };
   // try {
   //   const  patientId  = req.params.id;
@@ -63,7 +63,6 @@ exports.getSessionsByPatientId = async (req, res) => {
   //   console.error('Error fetching sessions:', error);
   //   res.status(500).json({ message: 'Server error', error: error.message });
   // }
-};
 
 // You can add this function to your route handlers, for example:
 // router.get('/sessions/patient/:patientId', getSessionsByPatientId);
