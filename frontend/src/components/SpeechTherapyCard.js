@@ -143,7 +143,7 @@ export default function SpeechTherapyCard({defaultSound}) {
 
 
   return (
-    <div style={{display:"flex",alignContent:"center"}}>
+    <div style={{display:"flex",alignContent:"center",padding:35}}>
     <div className="speech-therapy-card">
       <div className="card-header">
         <h2 className="card-title">Try pronouncing the words for better understanding...</h2>
