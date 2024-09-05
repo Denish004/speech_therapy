@@ -15,7 +15,13 @@ const Card = ({ id,name, description, imageUrl }) => {
               <span className="circle circle2" />
               <span className="circle circle3" />
               <span className="circle circle4">
-                <img src={imageUrl} alt="Avatar" />
+              <div className="w-24 h-24 rounded-full overflow-hidden">
+              <img
+                src={imageUrl}
+                alt="Avatar"
+                className="w-full h-full object-cover rounded-full"
+              />
+            </div>
               </span>
             </div>
             <div className="glass" />
