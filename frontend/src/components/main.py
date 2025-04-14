@@ -16,7 +16,6 @@ app.add_middleware(
     allow_origins=["http://localhost:3000"], 
     allow_credentials=True,
     allow_methods=["*"],
-    allow_headers=["*"],
 )
 
 feature_columns = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
